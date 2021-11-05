@@ -118,13 +118,15 @@ const ProductDetails = ({ product }) => {
                     data-item-image={product?.bookCover?.url}
                     data-item-description={key}
                     data-item-weight={
-                      product?.prices[key] !== "Ebook"
+                      String(product?.prices[key]) !== "Ebook"
                         ? (Number(product?.weight) * Number(453.592)).toFixed(2)
                         : 0
                     }
-                    data-item-shippable={product?.prices[key] !== "Ebook"}
+                    data-item-shippable={
+                      String(product?.prices[key]) !== "Ebook"
+                    }
                     data-item-file-guid={
-                      product?.prices[key] === "Ebook"
+                      String(product?.prices[key]) === "Ebook"
                         ? "c0fe4c16-9cbb-47b0-b872-60a5048edf41"
                         : null
                     }
