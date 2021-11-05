@@ -123,7 +123,7 @@ const ProductDetails = ({ product }) => {
                         : 0
                     }
                     data-item-shippable={
-                      String(product?.prices[key]) !== "Ebook"
+                      String(product?.prices[key]) === "Ebook"
                     }
                     data-item-file-guid={
                       String(product?.prices[key]) === "Ebook"
