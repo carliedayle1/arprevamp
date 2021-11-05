@@ -113,7 +113,7 @@ const ProductDetails = ({ product }) => {
                     }`}
                     data-item-id={`${product?.id}-${key.split(" ").join("_")}`}
                     data-item-price={Number(product?.prices[key])}
-                    data-item-url={`/products/${product?.slug}`}
+                    data-item-url={`${process.env.NEXTAUTH_URL}/products/${product?.slug}`}
                     data-item-name={product?.title}
                     data-item-image={product?.bookCover?.url}
                     data-item-description={key}
