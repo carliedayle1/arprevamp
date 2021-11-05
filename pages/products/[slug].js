@@ -116,7 +116,7 @@ const ProductDetails = ({ product }) => {
                     data-item-image={product?.bookCover?.url}
                     data-item-description={key}
                     data-item-weight={
-                      Number(product?.prices[key]) === "Ebook"
+                      Number(product?.prices[key]) !== "Ebook"
                         ? (Number(product?.weight) * 453.592).toFixed(2)
                         : 0
                     }
