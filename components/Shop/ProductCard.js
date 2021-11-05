@@ -181,7 +181,7 @@ const ProductCard = () => {
                         <a>{product?.title}</a>
                       </Link>
                     </h3>
-                    <span>${product?.priceRange}</span>
+                    <span>{product?.priceRange}</span>
                     <ul>
                       <li>
                         <i className="flaticon-star-1"></i>

@@ -13,47 +13,16 @@ import { toast } from "react-toastify";
 
 const ProductDetails = ({ product }) => {
   const router = useRouter();
-
   const { addItemToCart } = useContext(CartContext);
 
-  const [selectBookType, setSelectBookType] = useState("");
   const [bookTypePrice, setBookTypePrice] = useState("");
-
-  const setPriceOptions = () => {
-    if (!product?.priceOptions) {
-      return null;
-    } else {
-      const priceOptions = product?.priceOptions
-        .replace(/\[.*?\]/g, "")
-        .replace(/\|/g, ", ")
-        .split(",")
-        .map((type) => type.trim());
-
-      const prices = product?.priceOptions
-        .match(/\[(.*?)\]/g, "")
-        .map((price) => price.replace(/[\])}[{(]/g, ""));
-
-      let arr = [];
-
-      priceOptions.map((type, index) => {
-        let obj = {};
-
-        obj.type = type;
-        obj.price = prices[index];
-
-        return arr.push(obj);
-      });
-
-      return arr;
-    }
-  };
-
-  const [bookType, setBookType] = useState(setPriceOptions());
+  const [selectedType, setSelectedType] = useState(null);
 
   const selectChangeHandler = (e) => {
-    setSelectBookType(e.target.value);
-    const book = bookType.find((book) => book.type == e.target.value);
-    setBookTypePrice(book.price);
+    // setSelectBookType(e.target.value);
+    // const book = bookType.find((book) => book.type == e.target.value);
+    setBookTypePrice(product?.prices[e.target.value]);
+    setSelectedType(e.target.value);
   };
 
   const backButtonHandler = () => {
@@ -119,28 +88,45 @@ const ProductDetails = ({ product }) => {
                   </li>
                 </ul>
 
-                {/* <p>{product?.description}</p> */}
                 <div>
                   <h2>{bookTypePrice !== "" ? `$ ${bookTypePrice}` : ""}</h2>
                 </div>
                 <Form.Select
                   aria-label="Book Type"
                   style={{ marginBottom: "2rem", maxWidth: "30rem" }}
-                  value={selectBookType ? selectBookType : "Select book type"}
+                  value={selectedType ? selectedType : "Select book type"}
                   onChange={selectChangeHandler}
                 >
                   <option disabled>Select book type</option>
 
-                  {bookType.map((book) => (
-                    <option value={book.type} key={book.type}>
-                      {book.type}
+                  {Object.keys(product?.prices).map((key) => (
+                    <option value={key} key={key}>
+                      {key}
                     </option>
                   ))}
                 </Form.Select>
 
-                <button className=" btn btn-primary" onClick={addToCartHandler}>
-                  Add to Cart
-                </button>
+                {Object.keys(product?.prices).map((key) => (
+                  <button
+                    className={`btn btn-primary snipcart-add-item ${
+                      selectedType !== key && "hidden"
+                    }`}
+                    data-item-id={`${product?.id}-${key.split(" ").join("_")}`}
+                    data-item-price={Number(product?.prices[key])}
+                    data-item-url={`/products/${product?.slug}`}
+                    data-item-name={product?.title}
+                    data-item-image={product?.bookCover?.url}
+                    data-item-description={key}
+                    data-item-weight={
+                      Number(product?.prices[key]) === "Ebook"
+                        ? (Number(product?.weight) * 453.592).toFixed(2)
+                        : 0
+                    }
+                    key={key}
+                  >
+                    Add to Cart
+                  </button>
+                ))}
 
                 {/* <div className="custom-payment-options">
                   <span>Guaranteed safe checkout:</span>
