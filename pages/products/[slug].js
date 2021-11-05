@@ -117,7 +117,10 @@ const ProductDetails = ({ product }) => {
                     data-item-name={product?.title}
                     data-item-image={product?.bookCover?.url}
                     data-item-description={key}
-                    data-item-file-guid="c0fe4c16-9cbb-47b0-b872-60a5048edf41"
+                    // data-item-file-guid={`${console.log(
+                    //   String(product?.prices[key]) === "Ebook" &&
+                    //     String(product?.id) === "1"
+                    // )}`}
                     data-item-weight={
                       String(product?.prices[key]) !== "Ebook"
                         ? (Number(product?.weight) * Number(453.592)).toFixed(2)
