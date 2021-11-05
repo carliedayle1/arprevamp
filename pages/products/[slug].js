@@ -119,8 +119,11 @@ const ProductDetails = ({ product }) => {
                     data-item-description={key}
                     data-item-weight={
                       Number(product?.prices[key]) !== "Ebook"
-                        ? (Number(product?.weight) * 453.592).toFixed(2)
+                        ? (Number(product?.weight) * Number(453.592)).toFixed(2)
                         : 0
+                    }
+                    data-item-shippable={
+                      Number(product?.prices[key]) !== "Ebook"
                     }
                     data-item-file-guid={
                       Number(product?.prices[key]) === "Ebook"
