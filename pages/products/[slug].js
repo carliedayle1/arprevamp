@@ -122,6 +122,11 @@ const ProductDetails = ({ product }) => {
                         ? (Number(product?.weight) * 453.592).toFixed(2)
                         : 0
                     }
+                    data-item-file-guid={
+                      Number(product?.prices[key]) === "Ebook"
+                        ? "c0fe4c16-9cbb-47b0-b872-60a5048edf41"
+                        : ""
+                    }
                     key={key}
                   >
                     Add to Cart
