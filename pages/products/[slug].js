@@ -109,7 +109,7 @@ const ProductDetails = ({ product }) => {
                 {Object.keys(product?.prices).map((key) => (
                   <button
                     className={`btn btn-primary snipcart-add-item`}
-                    data-item-id={`${product?.id}-${key.split(" ").join("")}`}
+                    data-item-id={`${product?.id}${key.split(" ").join("")}`}
                     data-item-price={product?.prices[key]}
                     data-item-url={`/products/${product?.slug}`}
                     data-item-name={product?.title}
