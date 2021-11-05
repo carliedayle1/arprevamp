@@ -117,6 +117,7 @@ const ProductDetails = ({ product }) => {
                     data-item-name={product?.title}
                     data-item-image={product?.bookCover?.url}
                     data-item-description={key}
+                    data-item-file-guid="c0fe4c16-9cbb-47b0-b872-60a5048edf41"
                     data-item-weight={
                       String(product?.prices[key]) !== "Ebook"
                         ? (Number(product?.weight) * Number(453.592)).toFixed(2)
@@ -124,11 +125,6 @@ const ProductDetails = ({ product }) => {
                     }
                     data-item-shippable={
                       String(product?.prices[key]) === "Ebook"
-                    }
-                    data-item-file-guid={
-                      String(product?.prices[key]) === "Ebook"
-                        ? "c0fe4c16-9cbb-47b0-b872-60a5048edf41"
-                        : null
                     }
                     key={key}
                   >
