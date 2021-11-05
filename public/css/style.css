@@ -144,8 +144,8 @@ a:hover, a:focus {
   color: #0e314c !important;
 }
 
-.snipcart-modal__container {
-  margin-top: 98px;
+.snipcart-layout {
+  margin-top: 100px;
 }
 
 .hidden {
