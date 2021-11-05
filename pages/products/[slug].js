@@ -111,7 +111,7 @@ const ProductDetails = ({ product }) => {
                     className={`btn btn-primary snipcart-add-item`}
                     data-item-id={`${product?.id}${key.split(" ").join("")}`}
                     data-item-price={product?.prices[key]}
-                    data-item-url={`/products/${product?.slug}`}
+                    data-item-url={`/products/${product?.slug}/`}
                     data-item-name={product?.title}
                     data-item-image={product?.bookCover?.url}
                     data-item-description={key}
