@@ -125,7 +125,7 @@ const ProductDetails = ({ product }) => {
                     data-item-weight={
                       String(key) !== "Ebook"
                         ? (Number(product?.weight) * Number(453.592)).toFixed(2)
-                        : 0
+                        : ""
                     }
                     data-item-shippable={String(key) !== "Ebook"}
                     key={key}
