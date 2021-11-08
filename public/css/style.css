@@ -151,6 +151,8 @@ a:hover, a:focus {
 
 .snipcart-modal__container {
   margin-top: 98px;
+  min-height: 90%;
+  height: 90%;
 }
 
 .hidden {
