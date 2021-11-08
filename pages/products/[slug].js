@@ -120,7 +120,7 @@ const ProductDetails = ({ product }) => {
                     data-item-file-guid={`${
                       String(key) === "Ebook"
                         ? "02f7686a-007a-46d2-b960-696d3ef2f2f3"
-                        : ""
+                        : null
                     }`}
                     data-item-weight={(
                       Number(product?.weight) * Number(453.592)
