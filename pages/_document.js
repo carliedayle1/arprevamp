@@ -38,6 +38,7 @@ class MyDocument extends Document {
             hidden
             id="snipcart"
             data-api-key={`${process.env.SNIPCART_SECRET_KEY}`}
+            data-config-modal-style="side"
           ></div>
         </body>
       </Html>
