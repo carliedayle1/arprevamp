@@ -122,11 +122,9 @@ const ProductDetails = ({ product }) => {
                         ? "02f7686a-007a-46d2-b960-696d3ef2f2f3"
                         : ""
                     }`}
-                    data-item-weight={
-                      String(key) !== "Ebook"
-                        ? (Number(product?.weight) * Number(453.592)).toFixed(2)
-                        : ""
-                    }
+                    data-item-weight={(
+                      Number(product?.weight) * Number(453.592)
+                    ).toFixed(2)}
                     data-item-shippable={String(key) !== "Ebook"}
                     key={key}
                   >
