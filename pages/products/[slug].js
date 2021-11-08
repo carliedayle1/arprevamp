@@ -117,12 +117,13 @@ const ProductDetails = ({ product }) => {
                     data-item-name={product?.title}
                     data-item-image={product?.bookCover?.url}
                     data-item-description={key}
-                    // data-item-file-guid={`${console.log(
-                    //   String(product?.prices[key]) === "Ebook" &&
-                    //     String(product?.id) === "1"
-                    // )}`}
+                    data-item-file-guid={`${
+                      String(key) === "Ebook"
+                        ? "02f7686a-007a-46d2-b960-696d3ef2f2f3"
+                        : ""
+                    }`}
                     data-item-weight={
-                      String(product?.prices[key]) !== "Ebook"
+                      String(key) !== "Ebook"
                         ? (Number(product?.weight) * Number(453.592)).toFixed(2)
                         : 0
                     }
