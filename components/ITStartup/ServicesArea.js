@@ -28,62 +28,82 @@ const ServicesArea = () => {
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Codesandbox /> Full Color
-                  </div>
+                  <Link href="/services/content-creativity/full-color">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Codesandbox /> Full Color
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Codesandbox /> Children's Book Packages
-                  </div>
+                  <Link href="/services/content-creativity/childrens-book">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Codesandbox /> Children's Book Packages
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Codesandbox /> Advanced Editorial Services
-                  </div>
+                  <Link href="/services/content-creativity/advanced-editorial-service">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Codesandbox /> Advanced Editorial Services
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Codesandbox /> Copy Editing
-                  </div>
+                  <Link href="/services/content-creativity/copy-editing">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Codesandbox /> Copy Editing
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Codesandbox /> Book Indexing Services
-                  </div>
+                  <Link href="/services/content-creativity/book-indexing">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Codesandbox /> Book Indexing Services
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Codesandbox /> Illustration Services
-                  </div>
+                  <Link href="/services/content-creativity/illustration-services">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Codesandbox /> Illustration Services
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Codesandbox /> Image Enhancement and Manipulation
-                  </div>
+                  <Link href="/services/content-creativity/image-enhancement-manipulation">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Codesandbox /> Image Enhancement and Manipulation
+                    </div>
+                  </Link>
                 </div>
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Codesandbox /> Translation Service - Spanish
-                  </div>
-                </div>
-
-                <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Codesandbox /> Audiobook Service
-                  </div>
+                  <Link href="/services/content-creativity/translation-service-spanish">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Codesandbox /> Translation Service - Spanish
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Codesandbox /> Data Entry
-                  </div>
+                  <Link href="/services/content-creativity/audiobook-service">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Codesandbox /> Audiobook Service
+                    </div>
+                  </Link>
+                </div>
+
+                <div className="col-lg-6 col-md-6">
+                  <Link href="/services/content-creativity/data-entry">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Codesandbox /> Data Entry
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
