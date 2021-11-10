@@ -4,6 +4,7 @@ import PageBanner from "@/components/Common/PageBanner";
 // import ServicesArea from "@/components/ITStartup/ServicesArea";
 import * as Icon from "react-feather";
 import Head from "next/head";
+import Link from "next/link";
 
 export default function Powerhouse() {
   return (
@@ -29,35 +30,45 @@ export default function Powerhouse() {
 
               <div className="row">
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Library Journal Ads
-                  </div>
+                  <Link href="/services/powerhouse/library-journal-ads">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Library Journal Ads
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Readers Digest Magazine Ad
-                  </div>
+                  <Link href="/services/powerhouse/readers-digest">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Readers Digest Magazine Ad
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> The New York Times Sunday Book Review Ad
-                    Opportunity
-                  </div>
+                  <Link href="/services/powerhouse/new-york-times-book-review">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> The New York Times Sunday Book Review Ad
+                      Opportunity
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe />
-                    Publisher Weekly Magazine
-                  </div>
+                  <Link href="/services/powerhouse/publisher-weekly-magazine">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe />
+                      Publisher Weekly Magazine
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> The Los Angeles Time Ad Opportunity
-                  </div>
+                  <Link href="/services/powerhouse/los-angeles-times-ad">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> The Los Angeles Time Ad Opportunity
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
