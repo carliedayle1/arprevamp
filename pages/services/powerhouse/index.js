@@ -72,32 +72,42 @@ export default function Powerhouse() {
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> The New York Review of Books Advertising
-                  </div>
+                  <Link href="/services/powerhouse/the-new-york-review-of-books">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> The New York Review of Books Advertising
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Comprehensive Facebook Ad Campaign
-                  </div>
+                  <Link href="/services/powerhouse/comprehensive-facebook-ad">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Comprehensive Facebook Ad Campaign
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Branding and Marketing Strategy
-                  </div>
+                  <Link href="/services/powerhouse/branding-and-marketing-strategy">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Branding and Marketing Strategy
+                    </div>
+                  </Link>
                 </div>
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Author Spotlight Full Production
-                  </div>
+                  <Link href="/services/powerhouse/author-spotlight-full-production">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Author Spotlight Full Production
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Online Video Discovery
-                  </div>
+                  <Link href="/services/powerhouse/online-video-discovery">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Online Video Discovery
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
