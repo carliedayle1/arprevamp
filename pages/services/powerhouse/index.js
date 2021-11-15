@@ -111,45 +111,59 @@ export default function Powerhouse() {
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Hollywood Book To Screen
-                  </div>
+                  <Link href="/services/powerhouse/hollywood-book-to-screen">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Hollywood Book To Screen
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Credibility and Recognition
-                  </div>
+                  <Link href="/services/powerhouse/credibility-and-recognition">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Credibility and Recognition
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Premium SEO Service
-                  </div>
+                  <Link href="/services/powerhouse/premium-seo-service">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Premium SEO Service
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Inside The Vatican Ads
-                  </div>
+                  <Link href="/services/powerhouse/inside-the-vatican-ads">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Inside The Vatican Ads
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Press Release Service
-                  </div>
+                  <Link href="/services/powerhouse/press-release-service">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Press Release Service
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Extensive Blog Campaign
-                  </div>
+                  <Link href="/services/powerhouse/extensive-blog-posting-campaign">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Extensive Blog Campaign
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Radio Interview with Kate Delaney
-                  </div>
+                  <Link href="/services/powerhouse/advance-radio-interview">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Radio Interview with Kate Delaney
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
