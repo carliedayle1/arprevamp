@@ -167,81 +167,126 @@ export default function Powerhouse() {
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Cinematic Book Trailer
-                  </div>
+                  <Link href="/services/powerhouse/cinematic-book-trailer">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Cinematic Book Trailer
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Internet Based Marketing
-                  </div>
+                  <Link href="/services/powerhouse/internet-based-marketing">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Internet Based Marketing
+                    </div>
+                  </Link>
                 </div>
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Advance Book Trailer
-                  </div>
-                </div>
-
-                <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Print-ad Trio Blast
-                  </div>
+                  <Link href="/services/powerhouse/advance-book-trailer">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Advance Book Trailer
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Author Publicity Spotlight
-                  </div>
+                  <Link href="/services/powerhouse/print-ad-trio-blast">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Print-ad Trio Blast
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Social Media Blast
-                  </div>
+                  <Link href="/services/powerhouse/author-publicity-spotlight">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Author Publicity Spotlight
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe />
-                    Ric Brattan Radio Interview
-                  </div>
+                  <Link href="/services/powerhouse/social-media-blast">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Social Media Blast
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Premium TV Advertising
-                  </div>
+                  <Link href="/services/powerhouse/radio-interview">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe />
+                      Ric Brattan Radio Interview
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> CBS Radio Interview on People of Distinction
-                  </div>
+                  <Link href="/services/powerhouse/premium-tv-advertising">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Premium TV Advertising
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Amazon Booksellers Campaign
-                  </div>
+                  <Link href="/services/powerhouse/cbs-radio-interview">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> CBS Radio Interview on People of
+                      Distinction
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Extensive Media Coverage
-                  </div>
-                </div>
-                <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe /> Publisher's Review
-                  </div>
+                  <Link href="/services/powerhouse/amazon-booksellers-campaign">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Amazon Booksellers Campaign
+                    </div>
+                  </Link>
                 </div>
 
                 <div className="col-lg-6 col-md-6">
-                  <div className="box">
-                    <Icon.Globe />
-                    Advance Youtube Promotion
-                  </div>
+                  <Link href="/services/powerhouse/extensive-media-coverage">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Extensive Media Coverage
+                    </div>
+                  </Link>
+                </div>
+                <div className="col-lg-6 col-md-6">
+                  <Link href="/services/powerhouse/publishers-review">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe /> Publisher's Review
+                    </div>
+                  </Link>
+                </div>
+
+                <div className="col-lg-6 col-md-6">
+                  <Link href="/services/powerhouse/advanced-youtube-promotion">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe />
+                      Advance Youtube Promotion
+                    </div>
+                  </Link>
+                </div>
+
+                <div className="col-lg-6 col-md-6">
+                  <Link href="/services/powerhouse/traditional-publishing">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe />
+                      Traditional Publishing
+                    </div>
+                  </Link>
+                </div>
+
+                <div className="col-lg-6 col-md-6">
+                  <Link href="/services/powerhouse/pittsburg-post">
+                    <div className="box" style={{ cursor: "pointer" }}>
+                      <Icon.Globe />
+                      Pittsburg Post - Gazette Ads
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
