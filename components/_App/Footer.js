@@ -30,42 +30,24 @@ const Footer = () => {
               <h3>Company</h3>
               <ul className="list">
                 <li>
-                  <Link href="/home">
-                    <a>Home</a>
+                  <Link href="/refund-policy">
+                    <a>Refund Policy</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/submit-manuscript">
-                    <a>Submit Your Manuscript</a>
+                  <Link href="/privacy-policy">
+                    <a>Privacy Policy</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/services">
-                    <a>Services</a>
+                  <Link href="/delivery-policy">
+                    <a>Delivery Policy</a>
                   </Link>
                 </li>
 
                 <li>
-                  <Link
-                    href="https://press.authorreputationpress.com/"
-                    passHref
-                  >
-                    <a>Blog</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about-us">
-                    <a>Testimonials</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about-us">
-                    <a>About Us</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact-us">
-                    <a>Contact Us</a>
+                  <Link href="/terms-of-service" passHref>
+                    <a>Terms of Service</a>
                   </Link>
                 </li>
               </ul>

@@ -171,6 +171,32 @@ a {
   height: 90%;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mr-2 {
+  margin-top: 2rem;
+}
+
+.mb-5 {
+  margin-bottom: 5rem;
+}
+
+.text-center {
+  text-align: center;
+  line-height: 2rem;
+}
+
+.center-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .hidden {
   display: none;
 }
