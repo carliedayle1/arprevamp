@@ -28,7 +28,7 @@ const DiscoverArea = () => {
                 completion.
               </p>
 
-              <Link href="#">
+              <Link href="/get-started">
                 <a className="btn btn-primary">Discover More</a>
               </Link>
             </div>

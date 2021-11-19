@@ -22,19 +22,19 @@ const Features = () => {
                 from idea to a professionally published book.
               </p>
 
-              <Link href="#">
+              <Link href="/get-started">
                 <a className="btn btn-primary">Sign Up Now</a>
               </Link>
             </div>
 
             <div className="col-lg-6 iot-features-image">
-              <img
+              <Image
                 src="/images/books/authorsguide.jpg"
                 className="animate__animated animate__fadeInUp animate__delay-0.6s"
                 alt="Authors Guide"
-                width="70%"
-                height="100%"
-                layout="fill"
+                width={500}
+                height={650}
+                layout="intrinsic"
               />
             </div>
           </div>

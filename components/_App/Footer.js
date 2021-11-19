@@ -50,6 +50,11 @@ const Footer = () => {
                     <a>Terms of Service</a>
                   </Link>
                 </li>
+                <li>
+                  <Link href="/contact-us" passHref>
+                    <a>Contact Us</a>
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -64,7 +69,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/faqs">
+                  <Link href="/frequently-asked-questions">
                     <a>FAQ's</a>
                   </Link>
                 </li>
@@ -74,15 +79,15 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/publishing-process">
+                  <Link href="/publishing-process-flow">
                     <a>Publishing Process Flow</a>
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link href="/sitemap">
                     <a>Sitemap</a>
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
@@ -92,22 +97,22 @@ const Footer = () => {
               <h3>Bookstore Fundamentals</h3>
               <ul className="list">
                 <li>
-                  <Link href="/home">
+                  <Link href="/services/bookstore-fundamentals/extensive-library-outreach-campaign">
                     <a>Extensive Library Outreach Program</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/submit-manuscript">
+                  <Link href="/services/bookstore-fundamentals/ingram-distribution">
                     <a>Ingram Distribution</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/services">
+                  <Link href="/services/bookstore-fundamentals/book-returnability-program">
                     <a>Book Returnability Program</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/about-us">
+                  <Link href="/services/bookstore-fundamentals/book-royalty-program">
                     <a>100% Book Royalty Program</a>
                   </Link>
                 </li>

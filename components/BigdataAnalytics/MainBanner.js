@@ -6,7 +6,10 @@ const MainBanner = () => {
   return (
     <div className="bigdata-analytics-banner">
       <div className="container" style={{ marginBottom: "100px" }}>
-        <div className="bigdata-analytics-content">
+        <div
+          className="bigdata-analytics-content"
+          style={{ marginBottom: "12rem" }}
+        >
           <h1>Fulfill Your Publishing Goals</h1>
           <p>
             Author Reputation Press is where you can find the most reliable team
@@ -14,9 +17,9 @@ const MainBanner = () => {
             decades in the industry.
           </p>
 
-          <Link href="/#">
+          {/* <Link href="/#">
             <a className="btn btn-primary">Get Started</a>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>
