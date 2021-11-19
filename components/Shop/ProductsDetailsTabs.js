@@ -4,7 +4,7 @@ import { Row, Col } from "react-bootstrap";
 resetIdCounter();
 
 const ProductsDetailsTabs = ({ product }) => {
-  const [bookType, setBookType] = useState(product?.priceOptions);
+  const [bookType, setBookType] = useState(product?.prices);
 
   return (
     <div className="products-details-tabs">
@@ -30,7 +30,9 @@ const ProductsDetailsTabs = ({ product }) => {
                     Book Type
                   </Col>
                   <Col sm={12} md={6} lg={6}>
-                    {bookType.replace(/\[.*?\]/g, "").replace(/\|/g, ", ")}
+                    {Object.keys(bookType).map((key) => (
+                      <>{`${key}, `}</>
+                    ))}
                   </Col>
                 </Row>
               </li>
