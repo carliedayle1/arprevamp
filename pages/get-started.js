@@ -39,9 +39,7 @@ const GetStarted = () => {
               </div>
 
               <div className="mr-2">
-                <h5>
-                  Your guide will be emailed to the address you enter below
-                </h5>
+                <h5>Please fill up the information below</h5>
 
                 <Row className="mr-2">
                   <Col lg={6} md={6} className="center">

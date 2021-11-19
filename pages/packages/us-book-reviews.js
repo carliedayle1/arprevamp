@@ -85,44 +85,36 @@ const HollywoodBookReviews = () => {
                     <tr>
                       <td>Cover and Book Link</td>
                       <td>
-                        {" "}
                         <Icon.Check />
                       </td>
                       <td>
-                        {" "}
                         <Icon.Check />
                       </td>
                     </tr>
                     <tr>
                       <td>Feature Display</td>
                       <td>
-                        {" "}
                         <Icon.Check />
                       </td>
                       <td>
-                        {" "}
                         <Icon.Check />
                       </td>
                     </tr>
                     <tr>
                       <td>Banner Display</td>
                       <td>
-                        {" "}
                         <Icon.Check />
                       </td>
                       <td>
-                        {" "}
                         <Icon.Check />
                       </td>
                     </tr>
                     <tr>
                       <td>Social Media</td>
                       <td>
-                        {" "}
                         <Icon.Check />
                       </td>
                       <td>
-                        {" "}
                         <Icon.Check />
                       </td>
                     </tr>
@@ -130,40 +122,33 @@ const HollywoodBookReviews = () => {
                       <td>Extended Article</td>
                       <td></td>
                       <td>
-                        {" "}
                         <Icon.Check />
                       </td>
                     </tr>
                     <tr>
                       <td>ARPress Gold Seal of Excellence Sticker</td>
                       <td>
-                        {" "}
                         <Icon.Check />
                       </td>
                       <td>
-                        {" "}
                         <Icon.Check />
                       </td>
                     </tr>
                     <tr>
                       <td>Eric Hoffer nomination</td>
                       <td>
-                        {" "}
                         <Icon.Check />
                       </td>
                       <td>
-                        {" "}
                         <Icon.Check />
                       </td>
                     </tr>
                     <tr>
                       <td>USRB Newsletter and Listing</td>
                       <td>
-                        {" "}
                         <Icon.Check />
                       </td>
                       <td>
-                        {" "}
                         <Icon.Check />
                       </td>
                     </tr>
