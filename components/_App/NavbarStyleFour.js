@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import Link from "@/utils/ActiveLink";
 import * as Icon from "react-feather";
 import Image from "next/image";
@@ -9,8 +9,6 @@ const NavbarStyleFour = ({ textLogo }) => {
   const [menu, setMenu] = React.useState(true);
 
   const [session, loading] = useSession();
-
-  const { countCartItems } = useContext(CartContext);
 
   const toggleNavbar = () => {
     setMenu(!menu);
@@ -201,15 +199,15 @@ const NavbarStyleFour = ({ textLogo }) => {
                   <a className="nav-link ">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="h-10 w-10"
+                      className="h-10 w-10"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                       />
                     </svg>{" "}

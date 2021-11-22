@@ -6,7 +6,7 @@ import Partner from "@/components/Common/Partner";
 import { Container, Row, Col } from "react-bootstrap";
 import * as Icon from "react-feather";
 
-export default function SubmitManuscript() {
+const SubmitManuscript = () => {
   return (
     <>
       <Head>
@@ -319,4 +319,6 @@ export default function SubmitManuscript() {
       <Footer />
     </>
   );
-}
+};
+
+export default SubmitManuscript;
