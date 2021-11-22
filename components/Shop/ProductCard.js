@@ -1,28 +1,61 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Link from "next/link";
 import * as Icon from "react-feather";
 import useSWR from "swr";
 import { API_URL } from "config";
 import { Loader } from "react-overlay-loader";
+import { PER_PAGE } from "config";
 
-const ProductCard = () => {
-  // console.log(products)
+const ProductCard = ({ total }) => {
+  const [page, setPage] = useState(1);
 
-  // const [products, setProducts] = useState(null);
+  const [start, setStart] = useState(
+    Number(page) === 1 ? 0 : (Number(page) - 1) * Number(PER_PAGE)
+  );
 
-  // const [loading, setLoading] = useState(false);
+  const lastPage = useMemo(() =>
+    Number(Math.ceil(Number(total) / Number(PER_PAGE)))
+  );
+
+  // useEffect(() => {}, [page]);
+
   const bookFetcher = async () => {
-    const res = await fetch(`${API_URL}/books`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `${API_URL}/books?_limit=${PER_PAGE}&_start=${start}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     return res.json();
   };
 
-  const { data: products, error } = useSWR(`${API_URL}/books`, bookFetcher);
+  const { data: products, error } = useSWR(
+    `${API_URL}/books?_limit=${PER_PAGE}&_start=${start}`,
+    bookFetcher
+  );
+
+  const nextButtonHandler = () => {
+    let next = +page + 1;
+    setPage(page + 1);
+    setStart(Number(next) === 1 ? 0 : (Number(next) - 1) * Number(PER_PAGE));
+  };
+
+  const prevButtonHandler = () => {
+    let prev = +page - 1;
+    setPage(page - 1);
+    setStart(Number(prev) === 1 ? 0 : (Number(prev) - 1) * Number(PER_PAGE));
+  };
+
+  const getPaginationText = () => {
+    var start = (page - 1) * PER_PAGE + 1;
+    var end = Math.min(start + PER_PAGE - 1, total);
+
+    return `${start} - ${end} of ${total}`;
+  };
 
   return (
     <div className="shop-area ptb-80">
@@ -141,11 +174,11 @@ const ProductCard = () => {
           <div className="row align-items-center">
             <div className="col-lg-9 col-md-7 col-sm-7">
               <div className="woocommerce-result-count">
-                <p>Showing 1-8 of 14 results</p>
+                <p>Showing {getPaginationText()} results</p>
               </div>
             </div>
 
-            <div className="col-lg-3 col-md-5 col-sm-5">
+            {/* <div className="col-lg-3 col-md-5 col-sm-5">
               <div className="woocommerce-topbar-ordering">
                 <select className="form-select">
                   <option value="1">Sort by Popularity</option>
@@ -156,7 +189,7 @@ const ProductCard = () => {
                   <option value="6">Sort by New</option>
                 </select>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -215,13 +248,15 @@ const ProductCard = () => {
             <div className="pagination-area">
               <nav aria-label="Page navigation">
                 <ul className="pagination justify-content-center">
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      Prev
-                    </a>
-                  </li>
+                  {page > 1 && (
+                    <li className="page-item">
+                      <button className="page-link" onClick={prevButtonHandler}>
+                        Prev
+                      </button>
+                    </li>
+                  )}
 
-                  <li className="page-item active">
+                  {/* <li className="page-item active">
                     <a className="page-link" href="#">
                       1
                     </a>
@@ -237,13 +272,15 @@ const ProductCard = () => {
                     <a className="page-link" href="#">
                       3
                     </a>
-                  </li>
+                  </li> */}
 
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      Next
-                    </a>
-                  </li>
+                  {page < lastPage && (
+                    <li className="page-item">
+                      <a className="page-link" onClick={nextButtonHandler}>
+                        Next
+                      </a>
+                    </li>
+                  )}
                 </ul>
               </nav>
             </div>
