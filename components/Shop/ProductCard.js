@@ -9,33 +9,61 @@ import { PER_PAGE } from "config";
 const ProductCard = ({ total }) => {
   const [page, setPage] = useState(1);
 
+  const [category, setCategory] = useState("");
+
   const [start, setStart] = useState(
     Number(page) === 1 ? 0 : (Number(page) - 1) * Number(PER_PAGE)
   );
 
-  const lastPage = useMemo(() =>
-    Number(Math.ceil(Number(total) / Number(PER_PAGE)))
-  );
-
-  // useEffect(() => {}, [page]);
-
-  const bookFetcher = async () => {
-    const res = await fetch(
-      `${API_URL}/books?_limit=${PER_PAGE}&_start=${start}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+  const categoryFetcher = async () => {
+    const res = await fetch(`${API_URL}/categories`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     return res.json();
   };
 
-  const { data: products, error } = useSWR(
-    `${API_URL}/books?_limit=${PER_PAGE}&_start=${start}`,
+  const bookQuery = () => {
+    if (category === "") {
+      return `${API_URL}/books?_limit=${PER_PAGE}&_start=${start}`;
+    } else {
+      return `${API_URL}/books?_limit=${PER_PAGE}&_start=${start}&categories.id=${category}`;
+    }
+  };
+
+  const bookFetcher = async () => {
+    const res = await fetch(bookQuery(), {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+
+    return data;
+  };
+
+  const { data: products, error: categoryError } = useSWR(
+    bookQuery(),
     bookFetcher
+  );
+
+  console.log(products?.length);
+
+  const { data: categories, error } = useSWR(
+    `${API_URL}/categories`,
+    categoryFetcher
+  );
+
+  const lastPage = useMemo(() =>
+    Number(
+      Math.ceil(
+        Number(category === "" ? total : products?.length) / Number(PER_PAGE)
+      )
+    )
   );
 
   const nextButtonHandler = () => {
@@ -52,9 +80,12 @@ const ProductCard = ({ total }) => {
 
   const getPaginationText = () => {
     var start = (page - 1) * PER_PAGE + 1;
-    var end = Math.min(start + PER_PAGE - 1, total);
+    var end = Math.min(
+      start + PER_PAGE - 1,
+      category === "" ? total : products?.length
+    );
 
-    return `${start} - ${end} of ${total}`;
+    return `${start} - ${end} of ${category === "" ? total : products?.length}`;
   };
 
   return (
@@ -72,100 +103,31 @@ const ProductCard = ({ total }) => {
               </div>
 
               <div className="row">
-                <div className="col-lg-3 col-md-6">
-                  <div className="box active">
+                <div
+                  className="col-lg-3 col-md-6 pointer"
+                  onClick={() => setCategory("")}
+                >
+                  <div className={`box ${category === "" && "active"}`}>
                     <Icon.Star /> All
                   </div>
                 </div>
-                <div className="col-lg-3 col-md-6">
-                  <div className="box">
-                    <Icon.Star /> Action and Adventure
-                  </div>
-                </div>
 
-                <div className="col-lg-3 col-md-6">
-                  <div className="box">
-                    <Icon.Star /> Children
-                  </div>
-                </div>
+                {categoryError && <div>{categoryError}</div>}
 
-                <div className="col-lg-3 col-md-6">
-                  <div className="box">
-                    <Icon.Star /> Crime and Detective
-                  </div>
-                </div>
-
-                <div className="col-lg-3 col-md-6">
-                  <div className="box">
-                    <Icon.Star /> Drama
-                  </div>
-                </div>
-
-                <div className="col-lg-3 col-md-6">
-                  <div className="box">
-                    <Icon.Star /> Fantasy
-                  </div>
-                </div>
-
-                <div className="col-lg-3 col-md-6">
-                  <div className="box">
-                    <Icon.Star /> Fiction Poetry
-                  </div>
-                </div>
-
-                <div className="col-lg-3 col-md-6">
-                  <div className="box">
-                    <Icon.Star /> Historical Fiction
-                  </div>
-                </div>
-
-                <div className="col-lg-3 col-md-6">
-                  <div className="box">
-                    <Icon.Star /> Mystery
-                  </div>
-                </div>
-
-                <div className="col-lg-3 col-md-6">
-                  <div className="box">
-                    <Icon.Star /> Romance
-                  </div>
-                </div>
-
-                <div className="col-lg-3 col-md-6">
-                  <div className="box">
-                    <Icon.Star /> Science
-                  </div>
-                </div>
-
-                <div className="col-lg-3 col-md-6">
-                  <div className="box">
-                    <Icon.Star /> Non Fiction
-                  </div>
-                </div>
-
-                <div className="col-lg-3 col-md-6">
-                  <div className="box">
-                    <Icon.Star /> Travel
-                  </div>
-                </div>
-
-                <div className="col-lg-3 col-md-6">
-                  <div className="box">
-                    <Icon.Star /> Body, Spirit and Mind
-                  </div>
-                </div>
-
-                <div className="col-lg-3 col-md-6">
-                  <div className="box">
-                    <Icon.Star /> Business and Finance
-                  </div>
-                </div>
-
-                <div className="col-lg-3 col-md-6">
-                  <div className="box">
-                    <Icon.Star /> History
-                  </div>
-                </div>
+                {categories &&
+                  categories.map((cat) => (
+                    <div
+                      className="col-lg-3 col-md-6 pointer"
+                      onClick={() => setCategory(cat?.id)}
+                      key={cat?.id}
+                    >
+                      <div
+                        className={`box ${category === cat?.id && "active"}`}
+                      >
+                        <Icon.Star /> {cat?.name}
+                      </div>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
@@ -174,7 +136,11 @@ const ProductCard = ({ total }) => {
           <div className="row align-items-center">
             <div className="col-lg-9 col-md-7 col-sm-7">
               <div className="woocommerce-result-count">
-                <p>Showing {getPaginationText()} results</p>
+                {products?.length > 0 ? (
+                  <p>Showing {getPaginationText()} results</p>
+                ) : (
+                  <p>Nothing to show</p>
+                )}
               </div>
             </div>
 
@@ -194,7 +160,7 @@ const ProductCard = ({ total }) => {
         </div>
 
         <div className="row justify-content-md-center">
-          {!products ? (
+          {!products || !categories ? (
             <Loader fullPage loading />
           ) : error ? (
             <h1>{error}</h1>

@@ -175,6 +175,10 @@ a:hover, a:focus {
   margin-bottom: 5rem;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .text-center {
   text-align: center;
   line-height: 2rem;
