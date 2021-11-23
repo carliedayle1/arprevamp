@@ -6,10 +6,10 @@ import Link from "next/link";
 import Head from "next/head";
 import { signIn } from "next-auth/client";
 import { useRouter } from "next/router";
-import { useToasts } from "react-toast-notifications";
 import Swal from "sweetalert2";
 import { getSession } from "next-auth/client";
 import Loader from "react-loader-spinner";
+import { toast } from "react-toastify";
 
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -36,8 +36,6 @@ const Login = () => {
 
   const router = useRouter();
 
-  const { addToast } = useToasts();
-
   const loginSubmitHandler = async ({ email, password }) => {
     setLoading(true);
     const result = await signIn("credentials", {
@@ -57,8 +55,16 @@ const Login = () => {
     } else {
       setLoading(false);
 
-      addToast("Login success", { appearance: "success" });
-      router.replace("/");
+      toast.success("Login success", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      router.replace("/profile");
     }
   };
 

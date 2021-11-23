@@ -3,6 +3,9 @@ import Link from "@/utils/ActiveLink";
 import * as Icon from "react-feather";
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/client";
+import { toast } from "react-toastify";
+
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const [menu, setMenu] = React.useState(true);
@@ -12,6 +15,8 @@ const Navbar = () => {
   const toggleNavbar = () => {
     setMenu(!menu);
   };
+
+  const router = useRouter();
 
   React.useEffect(() => {
     let elementId = document.getElementById("header");
@@ -25,8 +30,18 @@ const Navbar = () => {
     // window.scrollTo(0, 0);
   });
 
-  const logoutHandler = () => {
-    signOut();
+  const logoutHandler = async () => {
+    const data = await signOut({ redirect: false, callbackUrl: "/login" });
+    toast.warn("Logged out successfully", {
+      position: "bottom-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    router.push(data.url);
   };
 
   const classOne = menu
@@ -238,7 +253,11 @@ const Navbar = () => {
                         </Link>
                       </li>
                       <li className="nav-item">
-                        <a onClick={logoutHandler} className="nav-link">
+                        <a
+                          onClick={logoutHandler}
+                          className="nav-link"
+                          style={{ cursor: "pointer" }}
+                        >
                           Logout
                         </a>
                       </li>
