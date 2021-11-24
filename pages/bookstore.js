@@ -11,8 +11,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 const Bookstore = ({ total }) => {
-  // const [text, setText] = useState("");
-
   const [books, setBooks] = useState(null);
   const [loading, setLoading] = useState(false);
 

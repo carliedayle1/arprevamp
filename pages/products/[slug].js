@@ -122,50 +122,15 @@ const ProductDetails = ({ product }) => {
                         ? "c0fe4c16-9cbb-47b0-b872-60a5048edf41"
                         : null
                     }
-                    data-item-weight={(
+                    data-item-weight={Math.ceil(
                       Number(product?.weight) * Number(453.592)
-                    ).toFixed(2)}
+                    )}
                     data-item-shippable={String(key) !== "Ebook"}
                     key={key}
                   >
                     Add to Cart
                   </button>
                 ))}
-
-                {/* <div className="custom-payment-options">
-                  <span>Guaranteed safe checkout:</span>
-
-                  <div className="payment-methods">
-                    <img
-                      src="/images/payment-image/payment-img1.svg"
-                      alt="image"
-                    />
-                    <img
-                      src="/images/payment-image/payment-img2.svg"
-                      alt="image"
-                    />
-                    <img
-                      src="/images/payment-image/payment-img3.svg"
-                      alt="image"
-                    />
-                    <img
-                      src="/images/payment-image/payment-img4.svg"
-                      alt="image"
-                    />
-                    <img
-                      src="/images/payment-image/payment-img5.svg"
-                      alt="image"
-                    />
-                    <img
-                      src="/images/payment-image/payment-img6.svg"
-                      alt="image"
-                    />
-                    <img
-                      src="/images/payment-image/payment-img7.svg"
-                      alt="image"
-                    />
-                  </div>
-                </div> */}
               </div>
             </div>
 
