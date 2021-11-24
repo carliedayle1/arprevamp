@@ -185,6 +185,22 @@ a {
   margin-bottom: 5rem;
 }
 
+.search-results {
+  position: absolute;
+  width: 100%;
+  left: -0.6px;
+  z-index: 45;
+  background-color: #f2e9e4;
+}
+
+.search-item {
+  padding: 1rem;
+  cursor: pointer;
+  :hover {
+    background-color: #dee2ff;
+  }
+}
+
 .pointer {
   cursor: pointer;
 }

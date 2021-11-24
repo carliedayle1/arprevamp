@@ -51,8 +51,6 @@ const ProductCard = ({ total }) => {
     bookFetcher
   );
 
-  console.log(products?.length);
-
   const { data: categories, error } = useSWR(
     `${API_URL}/categories`,
     categoryFetcher
