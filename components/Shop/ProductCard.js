@@ -96,7 +96,7 @@ const ProductCard = ({ total }) => {
           <div className="features-details-desc">
             <div className="col-lg-12 col-md-12 services-content">
               <div className="section-title">
-                <h2>Genres</h2>
+                <h2>Categories</h2>
                 <div className="bar"></div>
               </div>
 

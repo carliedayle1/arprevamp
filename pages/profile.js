@@ -1,6 +1,7 @@
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import PageBanner from "@/components/Common/PageBanner";
+import FeedbackStyleTwo from "@/components/Common/FeedbackStyleTwo";
 import { getSession } from "next-auth/client";
 import { Loader } from "react-overlay-loader";
 
@@ -21,7 +22,6 @@ const Profile = ({ jwt }) => {
   };
 
   const { data: user, error } = useSWR(`${API_URL}/users/me`, userQuery);
-
   return (
     <>
       <Head>
@@ -43,7 +43,7 @@ const Profile = ({ jwt }) => {
                 <>
                   <div className="col-lg-4 col-md-4">
                     <div className="image">
-                      <img src="/images/headshot3.jpg" alt="image" />
+                      <img src={user?.picture?.url} alt="profile" />
                     </div>
                   </div>
 
@@ -53,30 +53,26 @@ const Profile = ({ jwt }) => {
                         user?.lastname ?? ""
                       }`}</h3>
                       <span className="sub-title">Author</span>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Quis ipsum suspendisse ultrices gravida.
-                        Risus commodo viverra maecenas accumsan lacus vel
-                        facilisis. Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.
+                      <p style={{ textAlign: "justify", fontStyle: "italic" }}>
+                        {user?.biography}
                       </p>
 
                       <ul className="info">
                         <li>
                           <span>Phone Number:</span>{" "}
-                          <a href="tel:+44254588689">(+44) -2545 - 88689</a>
+                          <a href={`tel:+${user?.phone ?? ""}`}>
+                            {user?.phone ?? ""}
+                          </a>
                         </li>
                         <li>
                           <span>Email:</span>{" "}
-                          <a href="mailto:hello@sarahtaylor.com">
+                          <a href={`mailto:${user?.email ?? ""}`}>
                             {user?.email ?? ""}
                           </a>
                         </li>
                       </ul>
 
-                      <ul className="social-link">
+                      {/* <ul className="social-link">
                         <li>
                           <a href="#" className="d-block" target="_blank">
                             <i className="bx bxl-facebook"></i>
@@ -97,7 +93,7 @@ const Profile = ({ jwt }) => {
                             <i className="bx bxl-linkedin"></i>
                           </a>
                         </li>
-                      </ul>
+                      </ul> */}
                       <div style={{ marginTop: "3rem" }}>
                         <button className="btn btn-secondary">
                           Edit Profile
@@ -106,6 +102,10 @@ const Profile = ({ jwt }) => {
                     </div>
                   </div>
                 </>
+              )}
+
+              {user?.books.length > 0 && (
+                <FeedbackStyleTwo books={user?.books} />
               )}
             </div>
           </div>

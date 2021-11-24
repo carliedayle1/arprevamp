@@ -7,7 +7,9 @@ const LeftTestimonial = ({ title, description, image, author }) => {
             <div className="section-title" style={{ marginTop: "2rem" }}>
               <h2>"{title}"</h2>
               <div className="bar"></div>
-              <p>{description}</p>
+              <p style={{ textAlign: "justify", fontStyle: "italic" }}>
+                {description}
+              </p>
               <h4 style={{ marginTop: "2rem" }}>- {author}</h4>
             </div>
           </div>

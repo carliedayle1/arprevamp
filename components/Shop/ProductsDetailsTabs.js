@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { resetIdCounter, Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Row, Col } from "react-bootstrap";
+import Link from "next/link";
 resetIdCounter();
 
 const ProductsDetailsTabs = ({ product }) => {
@@ -42,7 +43,11 @@ const ProductsDetailsTabs = ({ product }) => {
                     <span>Contributor/Author</span>
                   </Col>
                   <Col sm={12} md={6} lg={6}>
-                    {`${product?.author?.firstname} ${product?.author?.lastname}`}
+                    <Link href={`/authors/${product?.author?.username}`}>
+                      <a>
+                        {`${product?.author?.firstname} ${product?.author?.lastname}`}
+                      </a>
+                    </Link>
                   </Col>
                 </Row>
               </li>
@@ -52,7 +57,9 @@ const ProductsDetailsTabs = ({ product }) => {
                     <span>Categories</span>
                   </Col>
                   <Col sm={12} md={6} lg={6}>
-                    Biography/Autobiography, Featured Products, Fiction
+                    {product?.categories.map((cat) => (
+                      <>{`${cat.name}, `}</>
+                    ))}
                   </Col>
                 </Row>
               </li>
