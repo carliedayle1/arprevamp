@@ -125,6 +125,9 @@ const ProductDetails = ({ product }) => {
                     data-item-weight={Math.ceil(
                       Number(product?.weight) * Number(453.592)
                     )}
+                    data-item-length="14"
+                    data-item-width="3"
+                    data-item-height="21"
                     data-item-shippable={String(key) !== "Ebook"}
                     key={key}
                   >
