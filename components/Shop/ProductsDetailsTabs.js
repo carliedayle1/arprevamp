@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { resetIdCounter, Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Row, Col } from "react-bootstrap";
 import Link from "next/link";
@@ -31,8 +31,8 @@ const ProductsDetailsTabs = ({ product }) => {
                     Book Type
                   </Col>
                   <Col sm={12} md={6} lg={6}>
-                    {Object.keys(bookType).map((key) => (
-                      <>{`${key}, `}</>
+                    {product?.book_types.map((type) => (
+                      <Fragment key={type?.id}>{`${type?.name}, `}</Fragment>
                     ))}
                   </Col>
                 </Row>
@@ -58,7 +58,7 @@ const ProductsDetailsTabs = ({ product }) => {
                   </Col>
                   <Col sm={12} md={6} lg={6}>
                     {product?.categories.map((cat) => (
-                      <>{`${cat.name}, `}</>
+                      <Fragment key={cat?.id}>{`${cat.name}, `}</Fragment>
                     ))}
                   </Col>
                 </Row>

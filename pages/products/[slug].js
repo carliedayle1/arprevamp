@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import PageBanner from "@/components/Common/PageBanner";
@@ -7,46 +7,23 @@ import ProductsDetailsTabs from "@/components/Shop/ProductsDetailsTabs";
 import { useRouter } from "next/router";
 import { API_URL } from "config";
 import { Form } from "react-bootstrap";
-import CartContext from "context/CartContext";
-import Swal from "sweetalert2";
-import { toast } from "react-toastify";
 
 const ProductDetails = ({ product }) => {
   const router = useRouter();
-  const { addItemToCart } = useContext(CartContext);
 
   const [bookTypePrice, setBookTypePrice] = useState("");
   const [selectedType, setSelectedType] = useState(null);
 
   const selectChangeHandler = (e) => {
-    // setSelectBookType(e.target.value);
-    // const book = bookType.find((book) => book.type == e.target.value);
-    setBookTypePrice(product?.prices[e.target.value]);
-    setSelectedType(e.target.value);
+    const types = product?.book_types;
+
+    const type = types.filter((ty) => ty?.id == e.target.value);
+    setBookTypePrice(type[0]?.price);
+    setSelectedType(type[0]?.name);
   };
 
   const backButtonHandler = () => {
     router.back();
-  };
-
-  const addToCartHandler = () => {
-    if (selectBookType === "" || bookTypePrice === "") {
-      Swal.fire("Oops!", "You must select a book type.", "info");
-      return;
-    }
-
-    const cartItem = {
-      cartId: Math.random().toString(36).slice(2),
-      id: product?.id,
-      title: product?.title,
-      bookType: selectBookType,
-      photo: product?.bookCover?.url,
-      price: bookTypePrice,
-      quantity: 1,
-      total: parseFloat(bookTypePrice) * 1,
-    };
-    addItemToCart(cartItem);
-    toast.success("Book Added in the Cart!");
   };
 
   return (
@@ -99,35 +76,37 @@ const ProductDetails = ({ product }) => {
                 >
                   <option disabled>Select book type</option>
 
-                  {Object.keys(product?.prices).map((key) => (
-                    <option value={key} key={key}>
-                      {key}
+                  {product?.book_types.map((type) => (
+                    <option value={type?.id} key={type?.id}>
+                      {type?.name}
                     </option>
                   ))}
                 </Form.Select>
 
-                {Object.keys(product?.prices).map((key) => (
+                {product?.book_types.map((type) => (
                   <button
+                    key={type?.id}
                     className={`btn btn-primary snipcart-add-item ${
-                      selectedType !== key ? "hidden" : ""
+                      selectedType !== type?.name ? "hidden" : ""
                     }`}
-                    data-item-id={`${product?.id}${key.split(" ").join("")}`}
-                    data-item-price={product?.prices[key]}
-                    data-item-weight="100"
-                    data-item-length="14"
-                    data-item-width="3"
-                    data-item-height="21"
+                    data-item-id={`${product?.id}${type?.name}`}
+                    data-item-price={type?.price}
                     data-item-url={`/products/${product?.slug}/`}
                     data-item-name={product?.title}
                     data-item-image={product?.bookCover?.url}
-                    data-item-description={key}
+                    data-item-description={type?.name}
                     data-item-file-guid={
-                      String(key) === "Ebook"
+                      type?.name === "Ebook"
                         ? "c0fe4c16-9cbb-47b0-b872-60a5048edf41"
                         : null
                     }
-                    data-item-shippable={String(key) !== "Ebook"}
-                    key={key}
+                    data-item-weight={Math.ceil(
+                      Number(type?.weight) * Number(453.592)
+                    )}
+                    data-item-length={Math.ceil(Number(type?.bookLength))}
+                    data-item-width={Math.ceil(Number(type?.width))}
+                    data-item-height={Math.ceil(Number(type?.height))}
+                    data-item-shippable={type?.name !== "Ebook"}
                   >
                     Add to Cart
                   </button>
