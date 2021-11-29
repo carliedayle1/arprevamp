@@ -113,6 +113,10 @@ const ProductDetails = ({ product }) => {
                     }`}
                     data-item-id={`${product?.id}${key.split(" ").join("")}`}
                     data-item-price={product?.prices[key]}
+                    data-item-weight="100"
+                    data-item-length="14"
+                    data-item-width="3"
+                    data-item-height="21"
                     data-item-url={`/products/${product?.slug}/`}
                     data-item-name={product?.title}
                     data-item-image={product?.bookCover?.url}
@@ -122,10 +126,6 @@ const ProductDetails = ({ product }) => {
                         ? "c0fe4c16-9cbb-47b0-b872-60a5048edf41"
                         : null
                     }
-                    data-item-weight="100"
-                    data-item-length="14"
-                    data-item-width="3"
-                    data-item-height="21"
                     data-item-shippable={String(key) !== "Ebook"}
                     key={key}
                   >
