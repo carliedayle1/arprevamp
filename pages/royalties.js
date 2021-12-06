@@ -3,7 +3,12 @@ import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import PageBanner from "@/components/Common/PageBanner";
 import { getSession } from "next-auth/client";
-import { resetIdCounter, Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import dynamic from "next/dynamic";
+const Tabs = dynamic(
+  import("react-tabs").then((mod) => mod.Tabs),
+  { ssr: false }
+);
+import { Tab, TabList, TabPanel } from "react-tabs";
 import { Container, Button, Modal, Form } from "react-bootstrap";
 
 import Head from "next/head";
@@ -36,6 +41,7 @@ const Royalties = ({
 }) => {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState(null);
 
   const {
     register,
@@ -49,7 +55,22 @@ const Royalties = ({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const submitHandler = async (data) => {
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    if (file == null) {
+      Swal.fire("Error", "Please provide a file", "error");
+      return;
+    }
+
+    if (file?.type !== "application/pdf") {
+      Swal.fire(
+        "Error",
+        "Invalid file type. We only support PDF files",
+        "error"
+      );
+      return;
+    }
     setLoading(true);
 
     try {
@@ -68,7 +89,7 @@ const Royalties = ({
       const response = await request.json();
 
       if (request.ok) {
-        fileUploadHandler(response?.id, data?.claim[0]);
+        fileUploadHandler(response?.id);
         setShow(false);
         Swal.fire("Success", "Request submission success", "success");
       } else {
@@ -95,7 +116,7 @@ const Royalties = ({
     }
   };
 
-  const fileUploadHandler = async (id, file) => {
+  const fileUploadHandler = async (id) => {
     const formdata = new FormData();
     formdata.append("files", file);
     formdata.append("ref", "claim-request");
@@ -107,11 +128,15 @@ const Royalties = ({
       body: formdata,
     });
 
-    await upload.json();
+    const res = await upload.json();
 
     if (!upload.ok) {
       throw new Error("Error in uploading file");
     }
+  };
+
+  const fileChangeHandler = (e) => {
+    setFile(e.target.files[0] == undefined ? null : e.target.files[0]);
   };
   return (
     <>
@@ -188,7 +213,7 @@ const Royalties = ({
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Form onSubmit={handleSubmit(submitHandler)}>
+        <Form onSubmit={submitHandler}>
           <Modal.Header closeButton>
             <Modal.Title>Claim Royalty Request</Modal.Title>
           </Modal.Header>
@@ -216,15 +241,17 @@ const Royalties = ({
                 </p>
                 <p>5. Please double check the file before uploading.</p>
 
-                <p>
-                  <Form.Group controlId="formFile" className="mb-3">
-                    <Form.Label>Upload signed W9 Form</Form.Label>
-                    <Form.Control type="file" {...register("claim")} />
-                    {errors?.claim && (
-                      <p className="error-message">{errors?.claim?.message}</p>
-                    )}
-                  </Form.Group>
-                </p>
+                <Form.Group className="mb-3">
+                  <Form.Label>Upload signed W9 Form</Form.Label>
+                  <Form.Control
+                    type="file"
+                    onChange={(e) => fileChangeHandler(e)}
+                  />
+                  {errors?.claim && (
+                    <p className="error-message">{errors?.claim?.message}</p>
+                  )}
+                </Form.Group>
+
                 <p>
                   6. Click the <strong>SUBMIT REQUEST</strong> button
                 </p>
