@@ -183,12 +183,28 @@ a:hover, a:focus {
   background-color: #f2e9e4;
 }
 
+.search-services {
+  background-color: #f2e9e4;
+}
+
 .search-item {
   padding: 1rem;
   cursor: pointer;
 }
 
 .search-item :hover {
+  background-color: #dee2ff;
+}
+
+.search-item-service {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  cursor: pointer;
+}
+
+.search-item-service :hover {
   background-color: #dee2ff;
 }
 

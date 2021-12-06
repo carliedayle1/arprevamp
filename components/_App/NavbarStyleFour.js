@@ -129,6 +129,13 @@ const NavbarStyleFour = ({ textLogo }) => {
                       </Link>
                     </li>
                     <li className="nav-item">
+                      <Link href="/search-services" activeClassName="active">
+                        <a onClick={toggleNavbar} className="nav-link">
+                          Search Services
+                        </a>
+                      </Link>
+                    </li>
+                    <li className="nav-item">
                       <Link
                         href="/services/content-creativity"
                         activeClassName="active"
@@ -145,7 +152,7 @@ const NavbarStyleFour = ({ textLogo }) => {
                         activeClassName="active"
                       >
                         <a onClick={toggleNavbar} className="nav-link">
-                          Power House Platform
+                          Powerhouse Platform
                         </a>
                       </Link>
                     </li>
@@ -167,7 +174,7 @@ const NavbarStyleFour = ({ textLogo }) => {
                         activeClassName="active"
                       >
                         <a onClick={toggleNavbar} className="nav-link">
-                          Books Events and Tours
+                          Book Events and Tours
                         </a>
                       </Link>
                     </li>

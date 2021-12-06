@@ -58,7 +58,7 @@ const SubmitManuscript = () => {
           of polishing your work if it needs a bit more work and revision. We
           are accepting manuscripts in the following genre:
         </h6>
-        <Row>
+        {/* <Row>
           <Col sm={12} md={6}>
             <h5>Fiction</h5>
             <div className="services-content">
@@ -313,7 +313,7 @@ const SubmitManuscript = () => {
               </div>
             </div>
           </Col>
-        </Row>
+        </Row> */}
       </Container>
 
       <Footer />
