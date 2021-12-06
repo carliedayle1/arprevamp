@@ -1,6 +1,6 @@
 import { useState, Fragment } from "react";
 import { resetIdCounter, Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Table } from "react-bootstrap";
 import Link from "next/link";
 resetIdCounter();
 
@@ -60,6 +60,40 @@ const ProductsDetailsTabs = ({ product }) => {
                     {product?.categories.map((cat) => (
                       <Fragment key={cat?.id}>{`${cat.name}, `}</Fragment>
                     ))}
+                  </Col>
+                </Row>
+              </li>
+              <li>
+                <Row>
+                  <Col sm={12} md={3} lg={2}>
+                    <span>Dimensions</span>
+                  </Col>
+                  <Col sm={12} md={6} lg={6}>
+                    <Table size="sm">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Weight</th>
+                          <th>Width</th>
+                          <th>Length</th>
+                          <th>Height</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {product?.book_types.map(
+                          (type) =>
+                            type?.name !== "Ebook" && (
+                              <tr key={type?.id}>
+                                <td>{type?.name}</td>
+                                <td>{type?.weight}g</td>
+                                <td>{type?.width}cm</td>
+                                <td>{type?.bookLength}cm</td>
+                                <td>{type?.height}cm</td>
+                              </tr>
+                            )
+                        )}
+                      </tbody>
+                    </Table>
                   </Col>
                 </Row>
               </li>

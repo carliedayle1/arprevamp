@@ -179,7 +179,9 @@ const ProductCard = ({ total }) => {
                       </Link>
                     </h3>
                     <span>{product?.priceRange}</span>
-                    <ul>
+
+                    {/* Ratings */}
+                    {/* <ul>
                       <li>
                         <i className="flaticon-star-1"></i>
                       </li>
@@ -195,11 +197,11 @@ const ProductCard = ({ total }) => {
                       <li>
                         <i className="flaticon-star-1"></i>
                       </li>
-                    </ul>
+                    </ul> */}
 
                     {/* <AddToCartBtn {...product} /> */}
                     <Link href={`/products/${product?.slug}`}>
-                      <button className="add-to-cart-btn">See more</button>
+                      <button className="add-to-cart-btn mr-2">See more</button>
                     </Link>
                   </div>
                 </div>

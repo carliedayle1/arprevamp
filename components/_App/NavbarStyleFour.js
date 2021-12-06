@@ -256,6 +256,13 @@ const NavbarStyleFour = ({ textLogo }) => {
                         </Link>
                       </li>
                       <li className="nav-item">
+                        <Link href="/royalties" activeClassName="active">
+                          <a onClick={toggleNavbar} className="nav-link">
+                            Royalties
+                          </a>
+                        </Link>
+                      </li>
+                      <li className="nav-item">
                         <a
                           onClick={logoutHandler}
                           className="nav-link"

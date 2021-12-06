@@ -47,6 +47,8 @@ const ProductDetails = ({ product }) => {
 
                 <div className="price">{product?.priceRange}</div>
 
+                {/* Rating */}
+                {/* 
                 <ul className="rating">
                   <li>
                     <i className="flaticon-star-1"></i>
@@ -63,7 +65,7 @@ const ProductDetails = ({ product }) => {
                   <li>
                     <i className="flaticon-star-1"></i>
                   </li>
-                </ul>
+                </ul> */}
 
                 <div>
                   <h2>{bookTypePrice !== "" ? `$ ${bookTypePrice}` : ""}</h2>
@@ -82,6 +84,10 @@ const ProductDetails = ({ product }) => {
                     </option>
                   ))}
                 </Form.Select>
+                <p>
+                  Select a book type to reveal the <strong>Add to Cart</strong>{" "}
+                  button and the <strong>Price</strong>
+                </p>
 
                 {product?.book_types.map((type) => (
                   <button

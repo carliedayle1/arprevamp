@@ -94,11 +94,11 @@ const Profile = ({ jwt }) => {
                           </a>
                         </li>
                       </ul> */}
-                      <div style={{ marginTop: "3rem" }}>
+                      {/* <div style={{ marginTop: "3rem" }}>
                         <button className="btn btn-secondary">
                           Edit Profile
                         </button>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </>
