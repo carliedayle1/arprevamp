@@ -16,21 +16,9 @@ import { API_URL } from "config";
 import DirectRoyalty from "@/components/Royalties/DirectRoyalty";
 import IndirectRoyalty from "@/components/Royalties/IndirectRoyalty";
 
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import Loader from "react-loader-spinner";
-
-const schema = yup.object().shape({
-  claim: yup
-    .mixed()
-    .required("You need to provide a file")
-    .test("type", "We only support pdf files", (value) => {
-      return value && value[0]?.type === "application/pdf";
-    }),
-});
 
 const Royalties = ({
   directTotal,
@@ -42,15 +30,6 @@ const Royalties = ({
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -112,7 +91,6 @@ const Royalties = ({
     } finally {
       setShow(false);
       setLoading(false);
-      reset();
     }
   };
 
@@ -247,9 +225,6 @@ const Royalties = ({
                     type="file"
                     onChange={(e) => fileChangeHandler(e)}
                   />
-                  {errors?.claim && (
-                    <p className="error-message">{errors?.claim?.message}</p>
-                  )}
                 </Form.Group>
 
                 <p>

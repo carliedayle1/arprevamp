@@ -13,7 +13,7 @@ const ProductsDetailsTabs = ({ product }) => {
         <TabList>
           <Tab>Description</Tab>
           <Tab>Additional Information</Tab>
-          <Tab>Review</Tab>
+          {/* <Tab>Review</Tab> */}
         </TabList>
 
         <TabPanel>
@@ -101,7 +101,7 @@ const ProductsDetailsTabs = ({ product }) => {
           </div>
         </TabPanel>
 
-        <TabPanel>
+        {/* <TabPanel>
           <div className="products-reviews">
             <h3>Customer Reviews</h3>
             <p>There are no reviews yet.</p>
@@ -161,7 +161,7 @@ const ProductsDetailsTabs = ({ product }) => {
               </div>
             </form>
           </div>
-        </TabPanel>
+        </TabPanel> */}
       </Tabs>
     </div>
   );
