@@ -69,7 +69,7 @@ const CinematicBookTrailer = () => {
                     Alexa camera, complete with video effects to add spice to
                     your book trailer.
                   </p>
-                  <h6>Sample Book Trailers</h6>
+                  {/* <h6>Sample Book Trailers</h6>
                   <Row style={{ marginTop: "1rem" }}>
                     <Col lg={4} md={4} style={{ marginTop: "1rem" }}>
                       <iframe
@@ -104,7 +104,7 @@ const CinematicBookTrailer = () => {
                         allowfullscreen
                       ></iframe>
                     </Col>
-                  </Row>
+                  </Row> */}
                 </div>
 
                 <div style={{ marginTop: "2rem" }}>
@@ -117,7 +117,7 @@ const CinematicBookTrailer = () => {
                     all guaranteed regardless. Plus, authors can request a
                     camera upgrade for the shoot.
                   </p>
-                  <h6>Sample Book Trailers</h6>
+                  {/* <h6>Sample Book Trailers</h6>
                   <Row style={{ marginTop: "1rem" }}>
                     <Col lg={4} md={4} style={{ marginTop: "1rem" }}>
                       <iframe
@@ -152,7 +152,7 @@ const CinematicBookTrailer = () => {
                         allowfullscreen
                       ></iframe>
                     </Col>
-                  </Row>
+                  </Row> */}
                 </div>
 
                 <div style={{ marginTop: "2rem" }}>
@@ -164,7 +164,7 @@ const CinematicBookTrailer = () => {
                     details will be observed for this type of book trailer.
                     Camera upgrade is available as well.
                   </p>
-                  <h6>Sample Book Trailers</h6>
+                  {/* <h6>Sample Book Trailers</h6>
                   <Row style={{ marginTop: "1rem" }}>
                     <Col lg={4} md={4} style={{ marginTop: "1rem" }}>
                       <iframe
@@ -199,7 +199,7 @@ const CinematicBookTrailer = () => {
                         allowfullscreen
                       ></iframe>
                     </Col>
-                  </Row>
+                  </Row> */}
                 </div>
                 <div style={{ marginTop: "2rem" }}>
                   <p style={{ fontStyle: "italic" }}>
