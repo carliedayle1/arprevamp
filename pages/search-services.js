@@ -57,8 +57,6 @@ const SearchServices = () => {
         const subservicesRes = await subservicesReq.json();
 
         if (servicesReq.ok && subservicesReq.ok) {
-          console.log(servicesRes);
-          console.log(subservicesRes);
           setServices(servicesRes);
           setSubservices(subservicesRes);
           setLoading(false);
