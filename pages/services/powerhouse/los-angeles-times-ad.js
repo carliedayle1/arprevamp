@@ -3,10 +3,8 @@ import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import PageBanner from "@/components/Common/PageBanner";
 import { useRouter } from "next/router";
-import { Container, Button, Table, Row, Col } from "react-bootstrap";
-import Image from "next/image";
+import { Container, Button } from "react-bootstrap";
 import * as Icon from "react-feather";
-import Link from "next/link";
 
 const LosAngelesTimesAd = () => {
   const router = useRouter();

@@ -1,7 +1,6 @@
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import PageBanner from "@/components/Common/PageBanner";
-// import ServicesArea from "@/components/ITStartup/ServicesArea";
 import * as Icon from "react-feather";
 import Head from "next/head";
 import Link from "next/link";

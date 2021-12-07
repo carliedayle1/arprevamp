@@ -3,7 +3,7 @@ import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import PageBanner from "@/components/Common/PageBanner";
 import { useRouter } from "next/router";
-import { Container, Button, Table, Row, Col } from "react-bootstrap";
+import { Container, Button, Row, Col } from "react-bootstrap";
 import Image from "next/image";
 import * as Icon from "react-feather";
 

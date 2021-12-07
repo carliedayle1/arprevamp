@@ -4,7 +4,6 @@ import Footer from "@/components/_App/Footer";
 import PageBanner from "@/components/Common/PageBanner";
 import { useRouter } from "next/router";
 import { Container, Button } from "react-bootstrap";
-import Link from "next/link";
 
 const NTS = () => {
   const router = useRouter();

@@ -17,7 +17,6 @@ import "@/public/css/colors/brink-pink-style.css";
 import Layout from "@/components/_App/Layout";
 import { ToastProvider } from "react-toast-notifications";
 import { Provider } from "next-auth/client";
-import { CartProvider } from "context/CartContext";
 import { ToastContainer } from "react-toastify";
 
 export default function App({ Component, pageProps }) {
@@ -28,21 +27,19 @@ export default function App({ Component, pageProps }) {
       autoDismiss
     >
       <Provider session={pageProps.session}>
-        <CartProvider>
-          <Layout />
-          <ToastContainer
-            position="bottom-center"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
-          <Component {...pageProps} />
-        </CartProvider>
+        <Layout />
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        <Component {...pageProps} />
       </Provider>
     </ToastProvider>
   );
