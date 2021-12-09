@@ -8725,13 +8725,16 @@ ML Partner CSS
 /*================================================
 Our Solutions CSS
 =================================================*/
+.active-book-type {
+  background-color: $purple-color !important;
+}
 .solutions-area {
   padding-bottom: 50px;
   position: relative;
   z-index: 1;
 }
 .single-solutions-box {
-  padding: 20px 15px;
+  padding: 5px 5px;
   text-align: center;
   transition: $transition;
   position: relative;
@@ -8739,6 +8742,7 @@ Our Solutions CSS
   z-index: 1;
   border: 1px solid #c5fffd;
   border-radius: 5px;
+  cursor: pointer;
 
   .icon {
     margin-bottom: 25px;

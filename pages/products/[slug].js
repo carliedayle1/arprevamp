@@ -7,6 +7,8 @@ import ProductsDetailsTabs from "@/components/Shop/ProductsDetailsTabs";
 import { useRouter } from "next/router";
 import { API_URL } from "config";
 import { Form } from "react-bootstrap";
+import Link from "next/link";
+import * as Icon from "react-feather";
 
 const ProductDetails = ({ product }) => {
   const router = useRouter();
@@ -14,12 +16,9 @@ const ProductDetails = ({ product }) => {
   const [bookTypePrice, setBookTypePrice] = useState("");
   const [selectedType, setSelectedType] = useState(null);
 
-  const selectChangeHandler = (e) => {
-    const types = product?.book_types;
-
-    const type = types.filter((ty) => ty?.id == e.target.value);
-    setBookTypePrice(type[0]?.price);
-    setSelectedType(type[0]?.name);
+  const selectChangeHandler = (price, name) => {
+    setBookTypePrice(price);
+    setSelectedType(name);
   };
 
   const backButtonHandler = () => {
@@ -70,7 +69,24 @@ const ProductDetails = ({ product }) => {
                 <div>
                   <h2>{bookTypePrice !== "" ? `$ ${bookTypePrice}` : ""}</h2>
                 </div>
-                <Form.Select
+
+                <div className="row ">
+                  {product?.book_types.map((type) => (
+                    <div
+                      className="col-lg-3 col-sm-3 col-md-3"
+                      key={type?.id}
+                      onClick={() =>
+                        selectChangeHandler(type?.price, type?.name)
+                      }
+                    >
+                      <div className="single-solutions-box">
+                        <h3>{type?.name}</h3>
+                        <h6>{type?.price}</h6>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {/* <Form.Select
                   aria-label="Book Type"
                   style={{ marginBottom: "2rem", maxWidth: "30rem" }}
                   value={selectedType ? selectedType : "Select book type"}
@@ -83,11 +99,11 @@ const ProductDetails = ({ product }) => {
                       {type?.name}
                     </option>
                   ))}
-                </Form.Select>
-                <p>
+                </Form.Select> */}
+                {/* <p>
                   Select a book type to reveal the <strong>Add to Cart</strong>{" "}
                   button and the <strong>Price</strong>
-                </p>
+                </p> */}
 
                 {product?.book_types.map((type) => (
                   <button

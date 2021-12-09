@@ -9071,6 +9071,10 @@ ML Partner CSS
 /*================================================
 Our Solutions CSS
 =================================================*/
+.active-book-type {
+  background-color: #c679e3 !important;
+}
+
 .solutions-area {
   padding-bottom: 50px;
   position: relative;
@@ -9078,7 +9082,7 @@ Our Solutions CSS
 }
 
 .single-solutions-box {
-  padding: 20px 15px;
+  padding: 5px 5px;
   text-align: center;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -9087,6 +9091,7 @@ Our Solutions CSS
   z-index: 1;
   border: 1px solid #c5fffd;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .single-solutions-box .icon {
