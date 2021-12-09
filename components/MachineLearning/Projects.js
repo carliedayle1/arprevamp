@@ -43,7 +43,7 @@ const Projects = () => {
   }, []);
 
   const bookFetcher = async () => {
-    const res = await fetch(`${API_URL}/books`, {
+    const res = await fetch(`${API_URL}/books?featured=true`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +53,10 @@ const Projects = () => {
     return res.json();
   };
 
-  const { data: products, error } = useSWR(`${API_URL}/books`, bookFetcher);
+  const { data: products, error } = useSWR(
+    `${API_URL}/books?featured=true`,
+    bookFetcher
+  );
 
   return (
     <div className="ml-projects-area pt-5 ptb-80">

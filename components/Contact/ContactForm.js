@@ -8,6 +8,7 @@ import { API_URL } from "config";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import Loader from "react-loader-spinner";
+import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -15,13 +16,11 @@ const schema = yup.object().shape({
     .string()
     .email("Invalid email format")
     .required("Email address is required"),
-  phone: yup
-    .string()
-    .required("Phone number is required")
-    .matches(
-      /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-      "Phone number is not valid"
-    ),
+  phone: yup.string().required("Phone number is required"),
+  // .matches(
+  //   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+  //   "Phone number is not valid"
+  // ),
   subject: yup.string().required("Subject is required"),
   message: yup
     .string()
@@ -37,6 +36,7 @@ const ContactForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    control,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -159,14 +159,21 @@ const ContactForm = () => {
                   </div>
                 </div>
 
-                <div className="col-lg-6 col-md-6">
+                <div className="col-lg-12 col-md-12">
                   <div className="form-group">
-                    <input
+                    {/* <input
                       type="text"
                       name="phone"
                       placeholder="Your phone number"
                       className="form-control"
                       {...register("phone")}
+                    /> */}
+                    <PhoneInputWithCountry
+                      defaultCountry="US"
+                      placeholder="Enter phone number"
+                      control={control}
+                      name="phone"
+                      // {...register("contact")}
                     />
                     {errors?.phone && (
                       <div
@@ -179,7 +186,7 @@ const ContactForm = () => {
                   </div>
                 </div>
 
-                <div className="col-lg-6 col-md-6">
+                <div className="col-lg-12 col-md-12">
                   <div className="form-group">
                     <input
                       type="text"

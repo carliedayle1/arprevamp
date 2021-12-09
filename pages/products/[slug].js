@@ -132,7 +132,7 @@ const ProductDetails = ({ product }) => {
   );
 };
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const { slug } = params;
 
   try {
@@ -150,7 +150,6 @@ export async function getStaticProps({ params }) {
         props: {
           product: queryResult[0],
         },
-        revalidate: 10,
       };
     } else {
       return {
@@ -158,31 +157,10 @@ export async function getStaticProps({ params }) {
       };
     }
   } catch (e) {
-    console.error(e);
     return {
       notFound: true,
     };
   }
-}
-
-export async function getStaticPaths() {
-  const query = await fetch(`${API_URL}/books`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  const queryResult = await query.json();
-
-  const slugs = queryResult.map((book) => book.slug);
-
-  const slugParams = slugs.map((slug) => ({ params: { slug: slug } }));
-
-  return {
-    paths: slugParams,
-    fallback: "blocking",
-  };
 }
 
 export default ProductDetails;

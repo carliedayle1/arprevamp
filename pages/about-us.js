@@ -16,13 +16,22 @@ export default function AboutUs() {
       <PageBanner pageTitle="About Us" />
 
       <div className="center-row">
-        <Image
+        <iframe
+          width="760"
+          height="500"
+          src="https://www.youtube.com/embed/Hjregt9rNQM?autoplay=1&mute=1&loop=1"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; mute; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+        {/* <Image
           src="/images/books/employees.jpg"
           width={650}
           height={400}
           alt="employees"
           layout="intrinsic"
-        />
+        /> */}
 
         <h5 className="mr-2">Introduction</h5>
 

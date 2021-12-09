@@ -13,6 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { API_URL } from "config";
 import Swal from "sweetalert2";
 import Loader from "react-loader-spinner";
+import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -24,13 +25,7 @@ const schema = yup.object().shape({
     .string()
     .min(5, "Address must be at least 5 characters")
     .required("Address is required"),
-  contact: yup
-    .string()
-    .required("Contact is required")
-    .matches(
-      /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-      "Contact number is not valid"
-    ),
+  contact: yup.string().required("Contact is required"),
 });
 
 const GetStarted = () => {
@@ -40,6 +35,7 @@ const GetStarted = () => {
     register,
     handleSubmit,
     formState: { errors },
+    control,
     reset,
   } = useForm({
     resolver: yupResolver(schema),
@@ -110,6 +106,7 @@ const GetStarted = () => {
   const backButtonHandler = () => {
     router.back();
   };
+
   return (
     <>
       <Head>
@@ -174,11 +171,18 @@ const GetStarted = () => {
 
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Contact Number</Form.Label>
-                        <Form.Control
+                        <PhoneInputWithCountry
+                          defaultCountry="US"
+                          placeholder="Enter phone number"
+                          control={control}
+                          name="contact"
+                          // {...register("contact")}
+                        />
+                        {/* <Form.Control
                           type="text"
                           placeholder="Enter contact number"
                           {...register("contact")}
-                        />
+                        /> */}
                         {errors?.contact && (
                           <p className="error-message">
                             {errors?.contact?.message}

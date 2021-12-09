@@ -4,8 +4,15 @@ import PageBanner from "@/components/Common/PageBanner";
 import * as Icon from "react-feather";
 import Head from "next/head";
 import Link from "next/link";
+import { Button } from "react-bootstrap";
+import { useRouter } from "next/router";
 
 export default function Powerhouse() {
+  const router = useRouter();
+
+  const backButtonHandler = () => {
+    router.back();
+  };
   return (
     <>
       <Head>
@@ -19,7 +26,16 @@ export default function Powerhouse() {
           <div className="row justify-content-center align-items-center">
             <div className="col-lg-12 col-md-12 services-content">
               <div className="section-title">
-                <h2>Power House Platform</h2>
+                <div className="services-title-back">
+                  <h2>Power House Platform</h2>
+
+                  <Button
+                    className="btn btn-secondary"
+                    onClick={backButtonHandler}
+                  >
+                    Go Back
+                  </Button>
+                </div>
                 <div className="bar"></div>
                 <p>
                   Choose any of our wide array of services that will help you in

@@ -5,13 +5,31 @@ import { Loader } from "react-overlay-loader";
 import { Table } from "react-bootstrap";
 import dayjs from "dayjs";
 
-const IndirectRoyalty = ({ user, indirectTotal }) => {
+const IndirectRoyalty = ({ user }) => {
   const [indirectPage, setIndirectPage] = useState(1);
 
   const [indirectStart, setIndirectStart] = useState(
     Number(indirectPage) === 1
       ? 0
       : (Number(indirectPage) - 1) * Number(ROYALTY_PER_PAGE)
+  );
+
+  const indirectQuery = async () => {
+    const query = await fetch(
+      `${API_URL}/royalties/count?arpNumber=${user?.arpNumber}&type=Indirect`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return query.json();
+  };
+
+  const { data: indirectTotal, error: indirectError } = useSWR(
+    `${API_URL}/royalties?arpNumber=${user?.arpNumber}&type=Direct`,
+    indirectQuery
   );
 
   const indirectRoyaltyQuery = async () => {
@@ -57,6 +75,7 @@ const IndirectRoyalty = ({ user, indirectTotal }) => {
       {indirectRoyaltyError && (
         <div className="mr-2">{indirectRoyaltyError}</div>
       )}
+      {indirectError && <div className="mr-2">{indirectError}</div>}
       {!indirectRoyalties && <Loader fullPage loading />}
       {indirectRoyalties && indirectRoyalties.length > 0 ? (
         <>
@@ -74,6 +93,7 @@ const IndirectRoyalty = ({ user, indirectTotal }) => {
                 {/* <th>Withdraw Eligible</th> */}
                 <th>Author Earning</th>
                 <th>Claimed</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -91,6 +111,7 @@ const IndirectRoyalty = ({ user, indirectTotal }) => {
                     {/* <td>{item?.withdrawEligible}</td> */}
                     <td>${item?.authorEarning}</td>
                     <td>{item?.claimed == false ? "No" : "Yes"}</td>
+                    <td>{item?.status}</td>
                   </tr>
                 ))}
             </tbody>

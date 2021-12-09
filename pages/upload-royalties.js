@@ -109,7 +109,7 @@ const UploadRoyalties = () => {
                 status:
                   y["withdraw eligible"] === "No" ||
                   y["withdraw eligible"] == "no"
-                    ? "For claim"
+                    ? "READY"
                     : "",
                 type: data?.type,
                 uploadedBy: data?.email,

@@ -193,6 +193,18 @@ a {
   background-color: #f2e9e4;
 }
 
+.search-all-services {
+  position: absolute;
+  width: 100%;
+  left: -0.6px;
+  right: -17px;
+  z-index: 50;
+  background-color: #f2e9e4;
+  overflow-y: scroll;
+  min-height: 20rem;
+  height: 20rem;
+}
+
 .search-services {
   background-color: #f2e9e4;
 }

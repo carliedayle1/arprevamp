@@ -118,20 +118,21 @@ const Navbar = () => {
 
                   <ul className="dropdown-menu">
                     <li className="nav-item">
+                      <Link href="/services" activeClassName="active">
+                        <a onClick={toggleNavbar} className="nav-link">
+                          All Services
+                        </a>
+                      </Link>
+                    </li>
+                    <li className="nav-item">
                       <Link href="/submit-manuscript" activeClassName="active">
                         <a onClick={toggleNavbar} className="nav-link">
                           Submit Your Manuscript
                         </a>
                       </Link>
                     </li>
-                    <li className="nav-item">
-                      <Link href="/search-services" activeClassName="active">
-                        <a onClick={toggleNavbar} className="nav-link">
-                          Search Services
-                        </a>
-                      </Link>
-                    </li>
-                    <li className="nav-item">
+
+                    {/* <li className="nav-item">
                       <Link
                         href="/services/content-creativity"
                         activeClassName="active"
@@ -173,7 +174,7 @@ const Navbar = () => {
                           Book Events and Tours
                         </a>
                       </Link>
-                    </li>
+                    </li> */}
                   </ul>
                 </li>
 

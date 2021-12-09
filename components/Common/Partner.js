@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { API_URL } from "config";
 import Swal from "sweetalert2";
+import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -14,13 +15,11 @@ const schema = yup.object().shape({
     .string()
     .email("Invalid email format")
     .required("Email Address is required"),
-  contact: yup
-    .string()
-    .required("Contact is required")
-    .matches(
-      /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-      "Contact number is not valid"
-    ),
+  contact: yup.string().required("Contact is required"),
+  // .matches(
+  //   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+  //   "Contact number is not valid"
+  // ),
   manuscript: yup
     .mixed()
     .required("You need to provide a file")
@@ -37,6 +36,7 @@ const Partner = () => {
     register,
     handleSubmit,
     formState: { errors },
+    control,
     reset,
   } = useForm({
     resolver: yupResolver(schema),
@@ -146,7 +146,14 @@ const Partner = () => {
                 </Form.Group>
                 <Form.Group className="mb-3">
                   <Form.Label>Contact Number</Form.Label>
-                  <Form.Control type="text" {...register("contact")} />
+                  {/* <Form.Control type="text" {...register("contact")} /> */}
+                  <PhoneInputWithCountry
+                    defaultCountry="US"
+                    placeholder="Enter phone number"
+                    control={control}
+                    name="contact"
+                    // {...register("contact")}
+                  />
                   {errors?.contact && (
                     <p className="error-message">{errors?.contact?.message}</p>
                   )}

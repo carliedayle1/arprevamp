@@ -12,27 +12,63 @@ import { Tab, TabList, TabPanel } from "react-tabs";
 import { Container, Button, Modal, Form } from "react-bootstrap";
 
 import Head from "next/head";
-import { API_URL } from "config";
 import DirectRoyalty from "@/components/Royalties/DirectRoyalty";
 import IndirectRoyalty from "@/components/Royalties/IndirectRoyalty";
 
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import Loader from "react-loader-spinner";
+import useSWR from "swr";
+import { API_URL } from "config";
+import { useRouter } from "next/router";
 
-const Royalties = ({
-  directTotal,
-  indirectTotal,
-  user,
-  totalClaimableAmount,
-  claimableRoyaltyIds,
-}) => {
+const Royalties = ({ jwt, user }) => {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
 
+  const router = useRouter();
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const claimableRoyaltyQuery = async () => {
+    const query = await fetch(`/api/royalties`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      },
+      body: JSON.stringify({
+        arpNumber: user?.arpNumber,
+      }),
+    });
+    return query.json();
+  };
+
+  const { data: totalClaimableAmount, error } = useSWR(
+    `/api/royalties`,
+    claimableRoyaltyQuery
+  );
+
+  const claimablesQuery = async () => {
+    const query = await fetch(`/api/claimables`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      },
+      body: JSON.stringify({
+        arpNumber: user?.arpNumber,
+      }),
+    });
+    return query.json();
+  };
+
+  const { data: claimableRoyaltyIds, error: claimableError } = useSWR(
+    `/api/claimables`,
+    claimablesQuery
+  );
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -62,15 +98,47 @@ const Royalties = ({
           user: user?.id,
           royalties: claimableRoyaltyIds,
           status: "PENDING",
+          totalClaimableAmount: totalClaimableAmount,
         }),
       });
 
       const response = await request.json();
 
       if (request.ok) {
+        const ids = claimableRoyaltyIds;
+
+        if (ids.length > 0) {
+          ids.map(async (item) => {
+            const request = await fetch(`${API_URL}/royalties/${item}`, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                status: "PENDING",
+              }),
+            });
+
+            await request.json();
+
+            // if (!request.ok) {
+            //   throw new Error("Error in updating royalties");
+            // }
+          });
+        }
+
         fileUploadHandler(response?.id);
         setShow(false);
-        Swal.fire("Success", "Request submission success", "success");
+        Swal.fire({
+          title: "Request submission success",
+          icon: "success",
+          confirmButtonText: "Ok",
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            router.reload();
+          }
+        });
       } else {
         toast.error(
           "There is something wrong with the request, please try again later.",
@@ -134,12 +202,14 @@ const Royalties = ({
           }}
         >
           <div>
-            <h3>Total Claimable Royalty: ${totalClaimableAmount}</h3>
+            <h3>Total Claimable Royalty: ${totalClaimableAmount ?? ""}</h3>
             <p className="error-message">
               Note: You can only claim your royalty when it exceeds $50 and
               above.
             </p>
+            {error && <p>{error}</p>}
           </div>
+          {claimableError && <p>{claimableError}</p>}
 
           {totalClaimableAmount < 50 ? (
             <Button
@@ -168,7 +238,7 @@ const Royalties = ({
             <div className="products-description">
               <h2>Direct Royalties</h2>
               <Container className="mr-2" style={{ marginBottom: "3rem" }}>
-                <DirectRoyalty directTotal={directTotal} user={user} />
+                <DirectRoyalty user={user} />
               </Container>
             </div>
           </TabPanel>
@@ -177,7 +247,7 @@ const Royalties = ({
             <div className="products-description">
               <h2>Indirect Royalties</h2>
               <Container className="mr-2" style={{ marginBottom: "3rem" }}>
-                <IndirectRoyalty indirectTotal={indirectTotal} user={user} />
+                <IndirectRoyalty user={user} />
               </Container>
             </div>
           </TabPanel>
@@ -286,63 +356,10 @@ export async function getServerSideProps(context) {
     throw new Error("Invalid user");
   }
 
-  const requestDirectTotal = await fetch(
-    `${API_URL}/royalties?arpNumber=${user?.arpNumber}&type=Direct`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
-
-  const directTotal = await requestDirectTotal.json();
-
-  const requestIndirectTotal = await fetch(
-    `${API_URL}/royalties?arpNumber=${user?.arpNumber}&type=Indirect`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
-
-  const indirectTotal = await requestIndirectTotal.json();
-
-  if (!requestIndirectTotal.ok) {
-    throw new Error("Error in fetching indirect royalties");
-  }
-
-  const royalties = directTotal.concat(indirectTotal);
-  let totalClaimableAmount = 0;
-  let claimableRoyaltyIds = [];
-  if (royalties.length > 0) {
-    const filterClaimableEarnings = royalties.filter(
-      (item) => item?.claimed === false
-    );
-
-    if (filterClaimableEarnings.length > 0) {
-      const getAllAuthorEarnings = filterClaimableEarnings.map(
-        (item) => item?.authorEarning
-      );
-
-      claimableRoyaltyIds = filterClaimableEarnings.map((item) => item?.id);
-
-      totalClaimableAmount = getAllAuthorEarnings.reduce(
-        (prev, current) => parseFloat(prev) + parseFloat(current)
-      );
-    }
-  }
-
   return {
     props: {
       jwt,
-      directTotal: directTotal.length,
       user,
-      indirectTotal: indirectTotal.length,
-      totalClaimableAmount: parseFloat(totalClaimableAmount).toFixed(2),
-      claimableRoyaltyIds,
     },
   };
 }

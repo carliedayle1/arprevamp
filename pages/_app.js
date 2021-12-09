@@ -8,6 +8,7 @@ import "@/public/css/style.css";
 import "@/public/css/responsive.css";
 import "react-overlay-loader/styles.css";
 import "react-toastify/dist/ReactToastify.css";
+import "react-phone-number-input/style.css";
 
 // Multicolor if you want this color comment out
 import "@/public/css/colors/brink-pink-style.css";

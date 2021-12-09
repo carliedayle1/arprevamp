@@ -57,7 +57,7 @@ const Profile = ({ jwt }) => {
                         {user?.biography}
                       </p>
 
-                      <ul className="info">
+                      {/* <ul className="info">
                         <li>
                           <span>Phone Number:</span>{" "}
                           <a href={`tel:+${user?.phone ?? ""}`}>
@@ -70,7 +70,7 @@ const Profile = ({ jwt }) => {
                             {user?.email ?? ""}
                           </a>
                         </li>
-                      </ul>
+                      </ul> */}
 
                       {/* <ul className="social-link">
                         <li>

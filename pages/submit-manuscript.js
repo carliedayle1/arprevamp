@@ -3,8 +3,7 @@ import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import PageBanner from "@/components/Common/PageBanner";
 import Partner from "@/components/Common/Partner";
-import { Container, Row, Col } from "react-bootstrap";
-import * as Icon from "react-feather";
+import { Container } from "react-bootstrap";
 
 const SubmitManuscript = () => {
   return (
