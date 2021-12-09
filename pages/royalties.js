@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/_App/Navbar";
 import Footer from "@/components/_App/Footer";
 import PageBanner from "@/components/Common/PageBanner";
@@ -9,7 +9,7 @@ const Tabs = dynamic(
   { ssr: false }
 );
 import { Tab, TabList, TabPanel } from "react-tabs";
-import { Container, Button, Modal, Form } from "react-bootstrap";
+import { Container, Button, Modal, Form, Table } from "react-bootstrap";
 
 import Head from "next/head";
 import DirectRoyalty from "@/components/Royalties/DirectRoyalty";
@@ -21,16 +21,23 @@ import Loader from "react-loader-spinner";
 import useSWR from "swr";
 import { API_URL } from "config";
 import { useRouter } from "next/router";
+import dayjs from "dayjs";
 
 const Royalties = ({ jwt, user }) => {
   const [show, setShow] = useState(false);
+  const [showRoyalties, setShowRoyalties] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
+  const [address, setAddress] = useState("");
 
   const router = useRouter();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleShowRoyalty = (id) => setShowRoyalties(id);
+  const handleCloseRoyalty = () => setShowRoyalties("");
 
   const claimableRoyaltyQuery = async () => {
     const query = await fetch(`/api/royalties`, {
@@ -49,6 +56,21 @@ const Royalties = ({ jwt, user }) => {
   const { data: totalClaimableAmount, error } = useSWR(
     `/api/royalties`,
     claimableRoyaltyQuery
+  );
+
+  const transactionQuery = async () => {
+    const query = await fetch(`${API_URL}/claim-requests?user=${user.id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return query.json();
+  };
+
+  const { data: claimTransactions, error: claimTransactionError } = useSWR(
+    `${API_URL}/claim-requests?user=${user.id}`,
+    transactionQuery
   );
 
   const claimablesQuery = async () => {
@@ -74,7 +96,12 @@ const Royalties = ({ jwt, user }) => {
     e.preventDefault();
 
     if (file == null) {
-      Swal.fire("Error", "Please provide a file", "error");
+      Swal.fire("Warning", "Please provide a file", "warning");
+      return;
+    }
+
+    if (address == "") {
+      Swal.fire("Warning", "Please enter an address", "warning");
       return;
     }
 
@@ -99,6 +126,7 @@ const Royalties = ({ jwt, user }) => {
           royalties: claimableRoyaltyIds,
           status: "PENDING",
           totalClaimableAmount: totalClaimableAmount,
+          address: address,
         }),
       });
 
@@ -204,12 +232,13 @@ const Royalties = ({ jwt, user }) => {
           <div>
             <h3>Total Claimable Royalty: ${totalClaimableAmount ?? ""}</h3>
             <p className="error-message">
-              Note: You can only claim your royalty when it exceeds $50 and
-              above.
+              Note: You can only claim your royalty when it reaches or exceeds
+              $50.
             </p>
             {error && <p>{error}</p>}
           </div>
           {claimableError && <p>{claimableError}</p>}
+          {claimTransactionError && <p>{claimTransactionError}</p>}
 
           {totalClaimableAmount < 50 ? (
             <Button
@@ -254,6 +283,122 @@ const Royalties = ({ jwt, user }) => {
         </Tabs>
       </div>
 
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginBottom: "2rem",
+        }}
+      >
+        <h4> Transaction History</h4>
+      </div>
+      {claimTransactions && claimTransactions.length > 0 ? (
+        <Container>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Royalties</th>
+                <th>Delivery Address</th>
+                <th>Date and Time Submitted</th>
+                <th>Date and Time Updated</th>
+                <th>Total Claimable Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {claimTransactions &&
+                claimTransactions.map((item) => (
+                  <tr key={item?.id}>
+                    <td>
+                      <span
+                        className="pointer"
+                        onClick={() => handleShowRoyalty(String(item?.id))}
+                      >
+                        VIEW ROYALTIES
+                      </span>
+                    </td>
+                    <td>{item?.address}</td>
+                    <td>
+                      {dayjs(item?.created_at).format("MMM DD, YYYY h:mm A")}
+                    </td>
+                    <td>
+                      {" "}
+                      {dayjs(item?.updated_at).format("MMM DD, YYYY h:mm A")}
+                    </td>
+                    <td>${item?.totalClaimableAmount}</td>
+                    <td>{item?.status}</td>
+
+                    <Modal
+                      show={String(showRoyalties) == String(item?.id)}
+                      onHide={handleCloseRoyalty}
+                      size="lg"
+                      aria-labelledby="contained-modal-title-vcenter"
+                      scrollable
+                      style={{ marginTop: "10rem", maxHeight: "40rem" }}
+                    >
+                      <Modal.Header closeButton>
+                        <Modal.Title>Royalties</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        <div>
+                          <h6>Royalties associated with this claim request</h6>
+                          <div className="mr-2">
+                            <h5>
+                              Total Claimable Amount: $
+                              {item?.totalClaimableAmount}
+                            </h5>
+                          </div>
+                          <div className="mr-2">
+                            <Table striped bordered hover size="sm">
+                              <thead>
+                                <tr>
+                                  <th>Title</th>
+                                  <th>Source</th>
+                                  <th>Quantity</th>
+                                  <th>Net Sale</th>
+                                  <th>Author Earnings</th>
+                                  <th>Type</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {item?.royalties.length > 0 &&
+                                  item?.royalties.map((royalty) => (
+                                    <tr key={royalty?.id}>
+                                      <td>{royalty?.title}</td>
+                                      <td>{royalty?.source}</td>
+                                      <td>{royalty?.quantity}</td>
+                                      <td>{royalty?.netsale}</td>
+                                      <td>{royalty?.authorEarning}</td>
+                                      <td>{royalty?.type}</td>
+                                    </tr>
+                                  ))}
+                              </tbody>
+                            </Table>
+                          </div>
+                        </div>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button
+                          variant="primary"
+                          style={{ backgroundColor: "#0077b5" }}
+                          onClick={handleCloseRoyalty}
+                        >
+                          Close
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+                  </tr>
+                ))}
+            </tbody>
+          </Table>
+        </Container>
+      ) : (
+        <div className="center" style={{ marginBottom: "2rem" }}>
+          <p>No transactions yet...</p>
+        </div>
+      )}
+
       <Modal
         show={show}
         onHide={handleClose}
@@ -296,6 +441,14 @@ const Royalties = ({ jwt, user }) => {
                     onChange={(e) => fileChangeHandler(e)}
                   />
                 </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Delivery Address</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                  />
+                </Form.Group>
 
                 <p>
                   6. Click the <strong>SUBMIT REQUEST</strong> button
@@ -325,6 +478,7 @@ const Royalties = ({ jwt, user }) => {
           </Modal.Footer>
         </Form>
       </Modal>
+
       <Footer />
     </>
   );
