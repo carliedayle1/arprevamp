@@ -80,8 +80,8 @@ const ProductDetails = ({ product }) => {
                       }
                     >
                       <div className="single-solutions-box">
-                        <h3>{type?.name}</h3>
-                        <h6>{type?.price}</h6>
+                        <h6>{type?.name}</h6>
+                        <h6>${type?.price}</h6>
                       </div>
                     </div>
                   ))}
