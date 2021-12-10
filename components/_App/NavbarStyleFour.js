@@ -112,7 +112,23 @@ const NavbarStyleFour = ({ textLogo }) => {
                     </a>
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link href="/services" activeClassName="active">
+                    <a onClick={toggleNavbar} className="nav-link">
+                      Services
+                    </a>
+                  </Link>
+                </li>
 
+                <li className="nav-item">
+                  <Link href="/submit-manuscript" activeClassName="active">
+                    <a onClick={toggleNavbar} className="nav-link">
+                      Submit Manuscript
+                    </a>
+                  </Link>
+                </li>
+
+                {/* 
                 <li className="nav-item">
                   <Link href="/#">
                     <a onClick={(e) => e.preventDefault()} className="nav-link">
@@ -136,7 +152,7 @@ const NavbarStyleFour = ({ textLogo }) => {
                       </Link>
                     </li>
 
-                    {/* <li className="nav-item">
+                    <li className="nav-item">
                       <Link
                         href="/services/content-creativity"
                         activeClassName="active"
@@ -178,9 +194,9 @@ const NavbarStyleFour = ({ textLogo }) => {
                           Book Events and Tours
                         </a>
                       </Link>
-                    </li> */}
+                    </li>
                   </ul>
-                </li>
+                </li> */}
 
                 <li className="nav-item">
                   <Link href="/testimonial" activeClassName="active">
